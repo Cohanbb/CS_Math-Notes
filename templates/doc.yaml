@@ -1,0 +1,6 @@
+output-file: print.docx
+toc: true
+toc-depth: 3
+number-sections: true
+highlight-style: tango
+#reference-doc: "E:/code/markdown/1.docx"
