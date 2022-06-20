@@ -14,7 +14,7 @@
 
 2. Content Provider
 
-3. BroadcastReciver
+3. Broadcast Receiver
 
 4. Service
 
@@ -459,9 +459,21 @@ public class MainActivity extends Activity {
 }
 ```
 
-## Handler 机制
+## Handler 消息传递机制
 
+Handler 的主要工作就是为了满足UI线程和工作线程间（子线程）的通信，主要作用有两个：
 
+* 在新启动的线程发送消息
+
+* 在主线程中获取、处理消息
+
+由三部分构成：
+
+* Handler
+* MessageQueue
+* Looper
+
+新线程将消息发送至 MessageQueue，然后 Handler 不断从 MessageQueue 中获取并处理消息。Handler 从 MessageQueue 中读取消息就要用到 Looper，Looper 的 loop 方法负责读取 MessageQueue 中的消息，读取消息之后把消息发送给 Handler 来处理。
 
 # Activity
 
@@ -509,7 +521,7 @@ Intent 中的属性有：
 
 * Action
 * Data 
-* Categoty
+* Category
 * Type
 * Component
 * Extras
@@ -551,7 +563,6 @@ Intent 中的属性有：
 
 ### Intent 机制
 
-
 ```java
     Intent intent = new Intent;
     
@@ -574,3 +585,9 @@ Intent 中的属性有：
 ## SQLite 存储
 
 ## SD 卡
+
+# Content Provider
+
+# BroadcastReceiver
+
+# Service
