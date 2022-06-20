@@ -74,12 +74,76 @@ int color = Color.parseColor("#00CCFF");
 
 ### 基础控件
 
-* Button 
-* TextView 
-* EditText
-* RadioGroup
-* CheckBox
-* ImageView
+* Button 按钮
+
+```xml
+<Button
+    android:layout_width=""
+    android:layout_height=""
+    android:text=""
+    android:onClick=""/>
+```
+
+* TextView 文本视图
+
+```xml
+<TextView
+    android:layout_width=""
+    android:layout_height=""
+    android:text=""
+    android:textSize=""/>
+```
+
+* EditText 编辑文本视图
+
+```xml
+<EditText
+    ...
+    android:inputType=""/>
+```
+
+* RadioGroup 单选按钮
+
+```xml
+<RadioGroup
+    ...>
+
+    <RadioButton
+        ...
+    />
+
+    <RadioButton
+        ...
+    />
+
+</RadioGroup>
+```
+
+* CheckBox 复选框
+
+```xml
+<selector
+    ...>
+    
+    <item
+        ...
+    />
+
+    <item
+        ...
+    />
+
+</selector>
+```
+
+* ImageView 图片视图
+
+```xml
+<ImageView
+    ...
+    android:background=""
+    android:src=""/>
+```
 
 ### 高级控件
 
@@ -91,11 +155,6 @@ int color = Color.parseColor("#00CCFF");
 * DatePicker
 * ListView
 * GridView
-
-
-```xml
-
-```
 
 ## Layout
 
@@ -214,8 +273,122 @@ int color = Color.parseColor("#00CCFF");
 
 ### 约束布局 ConstraintLayout
 
+约束布局与相对布局类似，以其他控件作为参考来摆放控件。
 
+约束布局的出现是为了解决布局嵌套过多的问题。
 
+一些约束：
+
+```xml
+<!--
+    <ConstraintLayout
+        app:layout_constraintLeft_toLeftOf 左边界与指定控件左边界对齐
+        app:layout_constraintLeft_toRightOf 左边界与指定控件有边界对齐
+        app:layout_constraintRight_toLeftOf 右边界与指定控件左边界对齐
+        app:layout_constraintRight_toRightOf 右边界与指定控件右边界对齐
+        app:layout_constraintTop_toTopOf 上边界与指定控件上边界对齐
+        app:layout_constraintTop_toBottomOf 上边界与指定控件下边界对齐
+        app:layout_constraintBottom_toTopOf 下边界与指定控件上边界对齐
+        app:layout_constraintBottom_toBottomOf 下边界与指定控件下边界对齐
+        app:layout_constraintBaseline_toBaselineOf Baseline 与指定控件 Baseline 对齐
+        app:layout_constraintStart_toEndOf
+        app:layout_constraintStart_toStartOf
+        app:layout_constraintEnd_toStartOf
+        app:layout_constraintEnd_toEndOf
+        
+        
+        app:layout_constraintWidth_percent  占指定控件宽度百分比
+        app:layout_constraintHeight_percent 占指定控件高度百分比
+        
+        
+        app:layout_constraintCirecle 表明参考的对象
+        app:layout_constraintCirecle_Angle 控件中心与参考对象中心的夹角
+        app:layout_constraintCirecle_Radius 控件中心与参考对象中心的距离
+        
+        
+        app:layout_constraintHorizontal_bias 水平偏移
+        app:layout_constraintVertical_bias 垂直偏移
+    </ConstraintLayout>
+-->
+```
+
+**边距**
+
+```xml
+<!--
+    android:layout_marginStart与开头的边距
+    android:layout_marginEnd 与末尾的边距
+    android:layout_marginLeft 左边距
+    android:layout_marginTop 上边距
+    android:layout_marginRight 右边距
+    android:layout_marginBottom 下边距
+-->
+```
+
+在约束布局中想要设置 margin，必须约束好该控件 ConstraintLayout 中的位置。
+
+**goneMargin**
+
+goneMargin主要用于约束的控件可见性被设置为gone的时候使用的margin值。
+
+```xml
+<!--
+    layout_goneMarginStart
+    layout_goneMarginEnd
+    layout_goneMarginLeft
+    layout_goneMarginTop
+    layout_goneMarginRight
+    layout_goneMarginBottom
+-->
+```
+
+**居中和偏移**
+
+水平居中
+
+```xml
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+```
+
+垂直居中
+
+```xml
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+```
+
+水平+垂直居中
+
+```xml
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+```
+
+在居中的基础上设置 margin 可实现偏移，另一种偏移方式
+
+```xml
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent
+    app:layout_constraintHorizontal_bias 水平偏移
+    app:layout_constraintVertical_bias 垂直偏移
+```
+
+**尺寸约束**
+
+控件的尺寸可以使用四种方式约束
+
+1. 直接指定具体的数值
+
+2. 设置为 `wrap_content`，然后可设置最大最小尺寸
+
+3. 设置为 0dp，则依照约束设定尺寸。
+
+4. 当宽和高至少一个被设置成 0dp，可通过 `layout_constraintDimensionRatio` 设置宽高比。
 
 # 事件监听
 
@@ -265,19 +438,26 @@ public class MainActivity extends Activity {
 }
 ```
 
-### 使用外部类
-
-```java
-
-```
-
 ### 使用 Activity 作为事件监听器
 
 ```java
+public class MainActivity extends Activity {
+    private Button btwshow;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnshow = (Button) findViewById(R.id.btnshow);
+        btnshow.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        /*响应代码*/
+    }
+}
 ```
-
-## 回调机制
 
 ## Handler 机制
 
@@ -328,11 +508,12 @@ Intent 机制用来协助应用进行交互和通信，不仅可用于应用程�
 Intent 中的属性有：
 
 * Action
-* Data
+* Data 
 * Categoty
 * Type
 * Component
-* Extra
+* Extras
+* Flag
 
 ## 启动 Activity
 
@@ -344,7 +525,7 @@ Intent 中的属性有：
     startActivity(intent);
     
     /*2.*/
-    ComponentName cn = new ComponentName;
+    ComponentName cn = new ComponentName("当前活动的全限定类名", "启动活动的全限定类名");
     Intent intent = new Intent();
     intent.setComponent(cn);
     startActivity(intent);
@@ -357,19 +538,39 @@ Intent 中的属性有：
 
 ### 隐式调用
 
+```java
+    Intent intent = new Intent;
+    intent.setAction("myaction");
+    intent.setCategory("mycategory");
+    startActivity(intent);
+```
 
+在 Manifest.xml 文件中找到调用的 Activity，设置 <intent-filter> 中的 action 和 category 属性。
 
 ## Activity 间的数据传递
 
 ### Intent 机制
 
+
+```java
+    Intent intent = new Intent;
+    
+```
+
 ### Bundle 机制
 
+```java
+
+```
 
 # 数据存储
 
-## 使用文件存储数据
+## SharedPreference
 
-## 使用 SharedPreference 存储数据
+## 文件存储
 
-## 使用 SQLite 数据库存储数据
+## Content Provider
+
+## SQLite 存储
+
+## SD 卡
