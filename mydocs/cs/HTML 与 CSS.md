@@ -1,7 +1,3 @@
----
-title: HTML CSS
-author: Cohanbb
----
 <p align="center">
     <font size="6"><strong>HTML 与 CSS</strong></font>
 </p>
