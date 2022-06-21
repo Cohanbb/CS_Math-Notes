@@ -51,14 +51,14 @@
 
 四大组件分别是：
 
-活动（Activity），用于表现功能，一般一个页面是一个 Activity；
+活动(Activity)，用于表现功能，一般一个页面是一个 Activity；
 
-服务（Service），后台运行服务，不提供界面呈现；
+服务(Service)，后台运行服务，不提供界面呈现；
 
-广播接收者（BroadcasC Receiver），对发送出来的广播进行过滤接受并
+广播接收者(BroadcasC Receiver)，对发送出来的广播进行过滤接受并
 响应；
 
-内容提供者（Content Provider），不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外
+内容提供者(Content Provider)，不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外
 提供数据，允许其他应用操作本应用程序。
 
 # UI 设计
@@ -690,6 +690,18 @@ Intent 中的属性有：
 # Content Provider
 
 # BroadcastReceiver
+
+广播接收器是 Android 系统的一个全局监听器，用于监听系统发来的广播消息。
+
+1. 静态注册（在 AndroidManifest.xml 文件中注册）在配置文件中注册的接收者的特点是即使应用程序已经关闭，该接收者仍然可以接受到他感兴趣的广播。
+
+2. 动态注册（在 Activity 中注册）在 Activity 中绑定接收者必须依附该应用程序存在，则程序关闭后就不需要再接收广播。
+
+一般情况下广播接收者的使用步骤如下：
+
+1. 自定义类 MyReceiver 继承 BroadcastReceiver
+2. 重写 onReceive()
+3. 注册广播接收者
 
 # Service
 
