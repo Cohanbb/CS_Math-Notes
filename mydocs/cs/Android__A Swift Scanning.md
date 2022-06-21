@@ -705,17 +705,17 @@ Intent 中的属性有：
 
 StartService启动Service
 
-1. 首次启动会创建一个 Service 实例,依次调用 onCreate() 和 onStartCommand() 方法,此时 Service 进入运行状态,如果再次调用 StartService 启动 Service,将不会再创建新的 Service 对象,系统会直接复用前面创建的 Service 对象,调用它的 onStartCommand() 方法!]
+1. 首次启动会创建一个 Service 实例，依次调用 onCreate() 和 onStartCommand() 方法，此时 Service 进入运行状态,如果再次调用 StartService 启动 Service 将不会再创建新的 Service 对象，系统会直接复用前面创建的 Service 对象，调用它的 onStartCommand() 方法!
 
-2. 但这样的 Service 与它的调用者无必然的联系,就是说当调用者结束了自己的生命周期,但是只要不调用 stopService(),那么 Service 还是会继续运行的!
+2. 但这样的 Service 与它的调用者无必然的联系，就是说当调用者结束了自己的生命周期，但是只要不调用 stopService()，那么 Service 还是会继续运行的!
 
-3. 无论启动了多少次 Service,只需调用一次 stopService() 即可停掉 Service
+3. 无论启动了多少次 Service，只需调用一次 stopService() 即可停掉 Service。
 
 
 bindService启动 Service
 
-1. 当首次使用 bindService 绑定一个 Service 时,系统会实例化一个 Service 实例,并调用其 onCreate() 和 onBind() 方法,然后调用者就可以通过 IBinder 和 Service 进行交互了,此后如果再次使用 bindService 绑定 Service,系统不会创建新的 Sevice 实例,也不会再调用 onBind() 方法,只会直接把 IBinder 对象传递给其他后来增加的客户端!
+1. 当首次使用 bindService 绑定一个 Service 时，系统会实例化一个 Service 实例，并调用其 onCreate() 和 onBind() 方法,然后调用者就可以通过 IBinder 和 Service 进行交互了，此后如果再次使用 bindService 绑定 Service，系统不会创建新的 Sevice 实例，也不会再调用 onBind() 方法，只会直接把 IBinder 对象传递给其他后来增加的客户端!
 
-2. 如果我们解除与服务的绑定,只需调用 unbindService(),此时 onUnbind 和 onDestory 方法将会被调用!这是一个客户端的情况,假如是多个客户端绑定同一个 Service 的话,情况如下当一个客户完成和 Service 之间的互动后,它调用 unbindService() 方法来解除绑定。当所有的客户端都和 Service 解除绑定后,系统会销毁 Service。(除非 Service 也被 startService() 方法开启)
+2. 如果我们解除与服务的绑定，只需调用 unbindService()，此时 onUnbind 和 onDestory 方法将会被调用！这是一个客户端的情况，假如是多个客户端绑定同一个 Service 的话，情况如下当一个客户完成和 Service 之间的互动后，它调用 unbindService() 方法来解除绑定。当所有的客户端都和 Service 解除绑定后,系统会销毁 Service。(除非 Service 也被 startService() 方法开启)
 
-3. 另外,和上面那张情况不同,bindService 模式下的 Service 是与调用者相互关联的,在bindService后,一旦调用者销毁,那么 Service 也立即终止!
+3. 另外，和上面那张情况不同，bindService 模式下的 Service 是与调用者相互关联的，在bindService后，一旦调用者销毁，那么 Service 也立即终止!
