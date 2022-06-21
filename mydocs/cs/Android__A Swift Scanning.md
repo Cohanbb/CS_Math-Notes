@@ -429,9 +429,9 @@ goneMargin主要用于约束的控件可见性被设置为gone的时候使用的
 
 2. 设置为 `wrap_content`，然后可设置最大最小尺寸
 
-3. 设置为 0dp，则依照约束设定尺寸。
+3. 设置为 0dp，则依照约束设定尺寸
 
-4. 当宽和高至少一个被设置成 0dp，可通过 `layout_constraintDimensionRatio` 设置宽高比。
+4. 当宽和高至少一个被设置成 0dp，可通过 `layout_constraintDimensionRatio` 设置宽高比
 
 # 事件监听
 
@@ -534,7 +534,7 @@ Activity 的四种状态
 
 • Paused 状态：暂停状态。当 Activity 被另一个透明或者 Dialog 样式的 Activity 覆盖时的状态。此时它依然与窗口管理器保持连接，系统继续维护其内部状态，所以它仍然可见，但它已经失去了焦点故不可与用户交互。
 
-• Stoped 状态:停止状态。当 Activity 被另一个 Activity 覆盖，失去焦点并不可见时的状态。
+• Stoped 状态：停止状态。当 Activity 被另一个 Activity 覆盖，失去焦点并不可见时的状态。
 
 • Killed/Destroy 状态：非活动状态。Activity 被系统杀死回收或者没有被启动时的状态。此时，待用 Activity 被移除 Activity 栈，并且需要在显示和可用之前重新启动它。
 
@@ -554,6 +554,7 @@ Activity 的四种状态
     </application>
 </manifest>
 ```
+
 创建布局文件 activity_main.xml：
 
 ```xml
