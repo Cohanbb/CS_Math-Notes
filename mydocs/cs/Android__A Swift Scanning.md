@@ -55,11 +55,9 @@
 
 服务(Service)，后台运行服务，不提供界面呈现；
 
-广播接收者(BroadcasC Receiver)，对发送出来的广播进行过滤接受并
-响应；
+广播接收者(BroadcasC Receiver)，对发送出来的广播进行过滤接受并响应；
 
-内容提供者(Content Provider)，不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外
-提供数据，允许其他应用操作本应用程序。
+内容提供者(Content Provider)，不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外提供数据，允许其他应用操作本应用程序。
 
 # UI 设计
 
@@ -623,7 +621,7 @@ Intent 中的属性有：
     startActivity(intent);
 ```
 
-在 Manifest.xml 文件中找到调用的 Activity，设置 <intent-filter> 中的 action 和 category 属性。
+在 AndroidManifest.xml 文件中找到调用的 Activity，设置 `<intent-filter>` 中的 action 和 category 属性。
 
 ## Activity 间的数据传递
 
