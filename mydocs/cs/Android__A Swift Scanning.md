@@ -558,13 +558,19 @@ Intent 机制用来协助应用进行交互和通信，不仅可用于应用程�
 
 Intent 中的属性有：
 
-* Action
-* Data 
-* Category
-* Type
-* Component
-* Extras
+* Action 指 Intent 的执行动作
+* Data 指执行动作的 URI
+* Category 指执行动作的附加类别信息，只有设置了这个 Action 才有效
+* Type 指执行动作的 MIME 类型
+* Component 用于显式指定 Intent 所对应的组件
+* Extras 添加一些附加信息，主要用于组件之间通信
 * Flag
+
+### Intent 的投递
+
+1. 显式方式：直接设置目标组件的 ComponentName，主要适应于一个项目内部组件的消息传递。使用 `setClassName`、`setComponent()` 函数等方式确定目标组件。
+
+2. 隐式方式：此方式不明确需要启动的组件名称，一般用于调用其他项目的组件。需要设置 Intent 的其他属性，如 action、data 和 category，并在 Manifest.xml 文件中设置 intent-filter 在所有组件中过滤相同意图来匹配目标组件。
 
 ## 启动 Activity
 
@@ -603,14 +609,22 @@ Intent 中的属性有：
 ### Intent 机制
 
 ```java
+    /*发送消息*/
     Intent intent = new Intent;
-    
+    intent.setClass(this, 启动的活动.class);
+    intent.putExtra("user", user);
+    startActivity(intent);
+
+    /*获取消息*/
+    Intent intent = getIntent();
+    getStringExtra("user");
 ```
 
 ### Bundle 机制
 
 ```java
-
+    Bundle Bundle = new Bundle();
+    bundle.putString("name", "Listen)
 ```
 
 # 数据存储
