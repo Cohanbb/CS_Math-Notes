@@ -639,12 +639,12 @@ Intent 中的属性有：
     /*发送消息*/
     Intent intent = new Intent;
     intent.setClass(this, 启动的活动.class);
-    intent.putExtra("user", user);
+    intent.putExtras("user", user);
     startActivity(intent);
 
     /*获取消息*/
     Intent intent = getIntent();
-    getStringExtra("user");
+    getStringExtras("user");
 ```
 
 ### Bundle 机制
