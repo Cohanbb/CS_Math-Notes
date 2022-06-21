@@ -669,41 +669,23 @@ Intent 中的属性有：
 
 在 Android 平台中进行数据存储主要有五大方式：
 
-1. 使用 SharedPreferences 存储数据：该方式是基于 XML 文件的存储方式,保存
-“key-value”键值对数据。这些信息的特点是:数据量少,格式非常简单,多数为字符串型等
-基本类型。通常,此方式主要用来存储一些简单的配置信息。例如,应用程序的各种配置信
-息(如是否打开音效,是否使用震动效果,是否反转屏幕等),也可以是系统的解锁口令密码
-等配置信息。
+1. 使用 SharedPreferences 存储数据：该方式是基于 XML 文件的存储方式，保存“key-value”键值对数据。这些信息的特点是：数据量少，格式非常简单，多数为字符串型等基本类型。通常，此方式主要用来存储一些简单的配置信息。例如，应用程序的各种配置信息(如是否打开音效，是否使用震动效果,是否反转屏幕等)，也可以是系统的解锁口令密码等配置信息。
 
-2. 文件存储数据：Activity 类提供了 openFileOutput() 方法用于把数据流输出到文件
-中,具体的实现过程与在 J2SE 环境中保存数据到文件中相同。文件可用来存放大量数据.
-如文本、图片,音频等。
+2. 文件存储数据：Activity 类提供了 openFileOutput() 方法用于把数据流输出到文件中，具体的实现过程与在 J2SE 环境中保存数据到文件中相同。文件可用来存放大量数据，如文本、图片、音频等。
 
-3. SQLite数据库存储数据：SQLite 是轻量级嵌人式数据库引擎,它支持 SQL 语言,
-并且占用很少的内存便可以表现出良好的性能。现在的主流移动设备如 Android、iPhone
-等都使用 SQLite 作为复杂数据的存储引擎。SQLite 主要用来存储大量的结构化数据。通
-过利用虚拟机和虚拟数据库引擎(VDBE),使调试,修改和扩展 SQLite 的内核变得更为方
-便。其特点是:面向资源有限的设备,没有服务器进程,允许所有数据存放在同一文件中跨
-平台,可实现自由复制。
+3. SQLite数据库存储数据：SQLite 是轻量级嵌人式数据库引擎，它支持 SQL 语言，并且占用很少的内存便可以表现出良好的性能。现在的主流移动设备如 Android、iPhone等都使用 SQLite 作为复杂数据的存储引擎。SQLite 主要用来存储大量的结构化数据。通过利用虚拟机和虚拟数据库引擎(VDBE)，使调试，修改和扩展 SQLite 的内核变得更为方便。其特点是：面向资源有限的设备，没有服务器进程，允许所有数据存放在同一文件中跨平台，可实现自由复制。
 
-4. 使用 ContentProvider 存储数据：该方式主要面向对外数据的共享和操作。应用维
-承 ContentProvider 类,并重写该类用于提供数据和存储数据的方法,就可以向其他应用来
-享其数据。虽然使用其他方法也可以对外共享数据,但数据访向方式会因数据存储的方式
-而不同。
+4. 使用 ContentProvider 存储数据：该方式主要面向对外数据的共享和操作。应用维承 ContentProvider 类，并重写该类用于提供数据和存储数据的方法，就可以向其他应用来享其数据。虽然使用其他方法也可以对外共享数据，但数据访向方式会因数据存储的方式而不同。
 
-5. 网络存储数据：这是通过网络来实现数据的存储和获取的方法。但是该方法需要
-设备保持网络连接状态,所以具有一定的限制。将数据存储到网络上的方法很多,如将需要
-保存的数据以文件的方式上传到服务器、发送邮件等。
+5. 网络存储数据：这是通过网络来实现数据的存储和获取的方法。但是该方法需要设备保持网络连接状态，所以具有一定的限制。将数据存储到网络上的方法很多，如将需要保存的数据以文件的方式上传到服务器、发送邮件等。
 
-结合 Android 开发中的实际经验,对比这几种数据存储方式,给出如下建议:
+结合 Android 开发中的实际经验，对比这几种数据存储方式，给出如下建议：
 
-* 简单数据和配置信息存储,首选 SharedPreference 方式
+* 简单数据和配置信息存储，首选 SharedPreference 方式
 
-* 数据量大的结构化数据,建议使用 SQLite 数据库
+* 数据量大的结构化数据，建议使用 SQLite 数据库
 
-* 文件方式主要用来存储非配置信息或结构化数据,如文本文件、二进制文件、多媒体
-文件,下载的文件等。建议尽量少用文件方式存储数据,若是私密文件或重要文件,建议将
-数据存储在应用内部
+* 文件方式主要用来存储非配置信息或结构化数据，如文本文件、二进制文件、多媒体文件，下载的文件等。建议尽量少用文件方式存储数据，若是私密文件或重要文件，建议将数据存储在应用内部
 
 # Content Provider
 
@@ -713,19 +695,19 @@ Intent 中的属性有：
 
 ![](https://ss.html.cn/article/43/50/e4/4350e4f00e48c4589861b3ebe34ba47f.jpg-600)
 
-StartService启动Service
+startService 启动 Service
 
-1. 首次启动会创建一个 Service 实例，依次调用 onCreate() 和 onStartCommand() 方法，此时 Service 进入运行状态,如果再次调用 StartService 启动 Service 将不会再创建新的 Service 对象，系统会直接复用前面创建的 Service 对象，调用它的 onStartCommand() 方法!
+1. 首次启动会创建一个 Service 实例，依次调用 onCreate() 和 onStartCommand() 方法，此时 Service 进入运行状态，如果再次调用 StartService 启动 Service 将不会再创建新的 Service 对象，系统会直接复用前面创建的 Service 对象，调用它的 onStartCommand() 方法!
 
 2. 但这样的 Service 与它的调用者无必然的联系，就是说当调用者结束了自己的生命周期，但是只要不调用 stopService()，那么 Service 还是会继续运行的!
 
 3. 无论启动了多少次 Service，只需调用一次 stopService() 即可停掉 Service。
 
 
-bindService启动 Service
+bindService 启动 Service
 
-1. 当首次使用 bindService 绑定一个 Service 时，系统会实例化一个 Service 实例，并调用其 onCreate() 和 onBind() 方法,然后调用者就可以通过 IBinder 和 Service 进行交互了，此后如果再次使用 bindService 绑定 Service，系统不会创建新的 Sevice 实例，也不会再调用 onBind() 方法，只会直接把 IBinder 对象传递给其他后来增加的客户端!
+1. 当首次使用 bindService 绑定一个 Service 时，系统会实例化一个 Service 实例，并调用其 onCreate() 和 onBind() 方法，然后调用者就可以通过 IBinder 和 Service 进行交互了，此后如果再次使用 bindService 绑定 Service，系统不会创建新的 Sevice 实例，也不会再调用 onBind() 方法，只会直接把 IBinder 对象传递给其他后来增加的客户端!
 
-2. 如果我们解除与服务的绑定，只需调用 unbindService()，此时 onUnbind 和 onDestory 方法将会被调用！这是一个客户端的情况，假如是多个客户端绑定同一个 Service 的话，情况如下当一个客户完成和 Service 之间的互动后，它调用 unbindService() 方法来解除绑定。当所有的客户端都和 Service 解除绑定后,系统会销毁 Service。(除非 Service 也被 startService() 方法开启)
+2. 如果我们解除与服务的绑定，只需调用 unbindService()，此时 onUnbind 和 onDestory 方法将会被调用！这是一个客户端的情况，假如是多个客户端绑定同一个 Service 的话，情况如下当一个客户完成和 Service 之间的互动后，它调用 unbindService() 方法来解除绑定。当所有的客户端都和 Service 解除绑定后，系统会销毁 Service。(除非 Service 也被 startService() 方法开启)
 
 3. 另外，和上面那张情况不同，bindService 模式下的 Service 是与调用者相互关联的，在bindService后，一旦调用者销毁，那么 Service 也立即终止!
