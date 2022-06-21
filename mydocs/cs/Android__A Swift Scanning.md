@@ -530,20 +530,13 @@ Activity 的四种状态
 
 随着 Activity 生命周期各个方法的调用,产生了 Activity 的四种基本状态。
 
-• Active/Runing 状态:活动状态。一个新的 Activity 人栈后,它在屏幕最前端,处于
-栈的最顶端,处于可见并且可交互的激活状态。
+• Active/Runing 状态：活动状态。一个新的 Activity 入栈后，它在屏幕最前端，处于栈的最顶端，处于可见并且可交互的激活状态。
 
-• Paused 状态:暂停状态。当 Activity 被另一个透明或者 Dialog 样式的 Activity 覆盖
-时的状态。此时它依然与窗口管理器保持连接,系统继续维护其内部状态,所以它仍然可
-见,但它已经失去了焦点故不可与用户交互。
+• Paused 状态：暂停状态。当 Activity 被另一个透明或者 Dialog 样式的 Activity 覆盖时的状态。此时它依然与窗口管理器保持连接，系统继续维护其内部状态，所以它仍然可见，但它已经失去了焦点故不可与用户交互。
 
-• Stoped 状态:停止状态。当 Activity 被另一个 Activity 覆盖,失去焦点并不可见时
-的状态。
+• Stoped 状态:停止状态。当 Activity 被另一个 Activity 覆盖，失去焦点并不可见时的状态。
 
-• Killed/Destroy 状态:非活动状态。Activity 被系统杀死回收或者没有被启动时的状
-态。此时,待用 Activity 被移除 Activity 栈,并且需要在显示和可用之前重新启动它。
-图 3-13 展示了 Activity 生命周期各方法与各种状态之间转换的关系。
-
+• Killed/Destroy 状态：非活动状态。Activity 被系统杀死回收或者没有被启动时的状态。此时，待用 Activity 被移除 Activity 栈，并且需要在显示和可用之前重新启动它。
 
 ## 创建 Activity
 
