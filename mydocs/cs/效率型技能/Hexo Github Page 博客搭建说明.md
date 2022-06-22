@@ -66,10 +66,11 @@ $ git --version
  
  
 ## 配置主题
+
 Hexo 博客默认主题为 landscape，若想修改主题，在 GitHub 上找到主题，克隆到 theme 文件夹下。本例为 next 主题。  
 
-**获取主题**   
- theme文件夹下命令行输入：
+**获取主题**    
+theme文件夹下命令行输入：
 
 ```bash
 $ git clone https://github.com/theme-next/hexo-theme-next themes/next
@@ -140,6 +141,7 @@ local_search:
 需要将 \_config.yml 中的 `post_asset_folder` 设为 true，这样新建一个博客文件将生成一个同名的目录（文件夹），将图片放入该文件夹，在 markdown 文件中使用 `![](图片的名称)` 即可正常显示图片了。
 
 ## 发布博客
+
 在根目录命令行输入：
 
 ```bash
@@ -155,7 +157,9 @@ $ hexo g
 $ hexo d
 ```
 
-如果 markdown 内容中有数学公式，需要在文章上方加入 `mathjax: true`，或是在 next/_config.yml 文件中找到 `mathjax`，将 `per_page` 后改为 `true`，后者会使所有文章都自动加入 `mathjax: true`，由于数学公式与 hexo 默认的 marked 渲染器有冲突，故建议卸载 marked 渲染器，使用 pandoc 渲染器。
+如果 markdown 内容中有数学公式，需要在文章上方加入 `mathjax: true`，或是在 next/_config.yml 文件中找到 `mathjax`，将 `per_page` 后改为 `true`，后者会使所有文章都自动加入 `mathjax: true`。
+
+由于数学公式与 hexo 默认的 marked 渲染器有冲突，故建议卸载 marked 渲染器，使用 pandoc 渲染器。
 
 ```bash
 $ npm uninstall hexo-renderer-marked --save

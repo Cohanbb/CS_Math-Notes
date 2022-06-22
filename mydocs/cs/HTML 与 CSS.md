@@ -3,6 +3,7 @@
 </p>
 
 # 摘要
+
 一个 Web 页面是如何在浏览器上展示的？我们在浏览器上查看网页源代码，可看到众多的标签、符号和文字，这就是一个 HTML 文件，而浏览器可以将这个文件解析成一个 Web 页面。一个 Web 页面如何设计样式、呈现出精美的视觉效果？则需要通过 CSS 对 HTML 进行加工美化。
 
 <hr>
@@ -28,9 +29,11 @@
 # HTML
 
 ## 简介 
+
 HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？简单来说，超文本指具有超链接功能的文本，即一个超文本可以由若干个超链接构成，最常见的应用场景便是 Web 页面，也用于其他领域，譬如 Markdown 文档。
 
 ## 基本架构
+
 `<html>` 标签：表明是一个 HTML 文档。  
 `<title>` 标签：定义文档的标题。  
 `<body>` 标签：定义文档的内容主体。  
@@ -51,6 +54,7 @@ HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？�
 ```
 
 这段代码在浏览器中的效果：
+
 <html>
     <title> demo </title>
     <body>
@@ -63,7 +67,8 @@ HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？�
 ## HTML 标签
 
 ### 基本标签   
-`html` 标签：表示是一个 HTML 文档。  
+
+`<html>` 标签：表示是一个 HTML 文档。  
 `<title>` 标签：定义文档的标题。  
 `<body>` 标签：定义文档的内容主体。  
 `<p>` 标签：定义一个段落。  
@@ -99,6 +104,7 @@ HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？�
 <del>删除字</del><br />
 
 ### 特殊标签
+
 **链接**
 
 ```html
@@ -314,6 +320,7 @@ HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？�
 # CSS
 
 ## 简介
+
 CSS(Cascading Style Sheets) 层叠样式表，用以定义 HTML 中元素的样式，HTML 使用 CSS 的方式有三种：
 1. 内联样式：在 HTML 元素标签中使用 "style" 属性。
 
@@ -352,11 +359,13 @@ CSS(Cascading Style Sheets) 层叠样式表，用以定义 HTML 中元素的样�
 }
 ```
 
-选择器可以是 HTML 标签，也可以是 id 或 class。
+选择器可以是 HTML 标签，也可以是 id 或 class
+
 * id 选择器只能定义标有特定 id 的元素的样式，形式为 `#[id]`。
 * class 选择器可以定义一类元素的样式，形式为 `.[class]`。
 
 ### 文本属性
+
 **background**
 
 * background-color:
@@ -437,6 +446,7 @@ a:link or visited or hover or active {
 ```
 
 ### 结构属性
+
 **盒子模型**   
 所有的 HTML 元素都可以看成一个盒子模型，包括外边距(margin)、边框(border)、内边距(padding)、内容(content)，内容指的是文本或图像等。
 
@@ -498,5 +508,6 @@ a:link or visited or hover or active {
 
 
 # 参考文献
+
 [1] 菜鸟教程. HTML 教程[EB/OL]. https://www.runoob.com/html/html-tutorial.html.   
 [2] 菜鸟教程. CSS 教程[EB/OL]. https://www.runoob.com/css/css-tutorial.html.

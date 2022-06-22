@@ -8,7 +8,7 @@ Git 是一个开源的分布式版本控制系统，是 Linus Torvalds 为 Linux
 
 <hr>
 
-**本文索引**
+**本文索引**  
 [TOC]
 
 <hr>
@@ -72,6 +72,7 @@ $ git config --global user.email "your email"
 * 当执行 `git checkout HEAD .` 或者 `git checkout HEAD <file>` 命令时，会用 HEAD 指向 master 分支中全部或者部分文件替换 index 以及工作区的文件。这个文件也是极具危险性的，因为不仅会清空工作区中为提交的改动，也会清楚暂存区中未提交的改动。
 
 ## 深入理解 Git
+
 下面以实际的操作来更深刻地理解 Git：
 
 1. 首先生成一个目录 test 作为工作区，并初始化 git：
