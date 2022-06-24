@@ -9,7 +9,22 @@ Git 是一个开源的分布式版本控制系统，是 Linus Torvalds 为 Linux
 <hr>
 
 **本文索引**  
-[TOC]
+
+- [摘要](#摘要)
+- [Git 安装和配置](#git-安装和配置)
+  - [安装 Git](#安装-git)
+  - [配置 Git](#配置-git)
+- [Git 原理](#git-原理)
+  - [Git 基本工作流程](#git-基本工作流程)
+  - [Git 工作区、暂存区和版本库](#git-工作区暂存区和版本库)
+  - [深入理解 Git](#深入理解-git)
+- [Git 常用命令](#git-常用命令)
+  - [创建和克隆 Git 仓库](#创建和克隆-git-仓库)
+  - [配置 Git](#配置-git-1)
+  - [提交和修改](#提交和修改)
+  - [分支](#分支)
+- [GitHub](#github)
+- [参考文献](#参考文献)
 
 <hr>
 
@@ -18,7 +33,9 @@ Git 是一个开源的分布式版本控制系统，是 Linus Torvalds 为 Linux
 ## 安装 Git
 
 Git 有良好的跨平台性，目前支持在 Linux、MacOS、FreeBSD 和 Windows 平台上运行。
+
 Windows 上可进入官网下载 Git：[git download](http://git-scm.com/download/win)，若无法下载或下载缓慢可使用国内镜像：[清华大学 git for windows update 镜像](https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/Git%20for%20Windows%202.36.1/)，下载并安装成功后将 Git 的 bin 目录加入环境变量。
+
 Linux 上可以直接使用 shell，以 Debian 系为例：
 
 ```bash
@@ -173,8 +190,10 @@ DIRCb���
 ```
 
 实际上 index 文件是虚拟的工作区，但仅仅是一个文件索引，包含了工作区的目录树，目录树上存储了各文件的文件名、文件的最终修改时间、文件的长度、文件的类型以及文件的哈希值。   
-文件的具体内容并未存储在 index，而是存储在 objects 目录之中。objects 目录中除了 info 和 pack 其他的目录名称都是两个字符构成，这是因为文件的哈希值有 40 位，取前两位作为目录，后 38 位作为目录下的文件名。  
+文件的具体内容并未存储在 index，而是存储在 objects 目录之中。objects 目录中除了 info 和 pack 其他的目录名称都是两个字符构成，这是因为文件的哈希值有 40 位，取前两位作为目录，后 38 位作为目录下的文件名。
+
 在 objects 目录下，存有四种类型的哈希值：blob 型、tree 型、commit 型和 parent 型。
+
 * blob 型用来存储添加/修改文件的内容
 * tree 型存储某个目录下的文件信息，包括文件名、文件权限、文件的哈希值
 * commit 型存储提交的信息

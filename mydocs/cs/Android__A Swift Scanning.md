@@ -27,6 +27,7 @@
   - [Activity 生命周期](#activity-生命周期)
   - [创建 Activity](#创建-activity)
   - [Intent](#intent)
+    - [Intent 的投递](#intent-的投递)
   - [启动 Activity](#启动-activity)
     - [显式调用](#显式调用)
     - [隐式调用](#隐式调用)
@@ -34,7 +35,7 @@
     - [Intent 机制](#intent-机制)
     - [Bundle 机制](#bundle-机制)
 - [数据存储](#数据存储)
-- [Content Provider](#content-provider-1)
+- [Content Provider](#content-provider)
 - [BroadcastReceiver](#broadcastreceiver)
 - [Service](#service)
 
