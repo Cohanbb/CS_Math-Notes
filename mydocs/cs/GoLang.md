@@ -44,23 +44,23 @@ func main() {
 
 Go 中有四大类数据类型：
 
-1. 布尔型(bool)：true 或 false
+1. 布尔型（bool）：true 或 false
 2. 数字类型：
     * 整数型
-        * int(8 | 16 | 32 | 64)
-        * uint(8 | 16 | 32 | 64)
+        * int 型（8 位｜16 位｜32 位｜64 位)
+        * uint(8 位｜16 位｜32 位｜64 位)
     * 浮点型 
-        * float(32 | 64)
-        * complex(64 | 128)
-3. 字符串类型(string)
+        * float（32 位｜64 位）
+        * complex（64 位｜128 位）
+3. 字符串类型（string）
 4. 派生类型
-    * 指针(pointer)
-    * 数组
-    * 结构体(struct)
+    * 指针（pointer）
+    * 数组（array）
+    * 结构体（struct）
     * Channel
-    * 函数(func)
+    * 函数（func）
     * 切片
-    * 接口(interface)
+    * 接口（interface）
     * map
 
 Go 变量的声明和初始化：
@@ -77,5 +77,3 @@ identifier = value
 
 
 # 进阶
-
-# 数据结构

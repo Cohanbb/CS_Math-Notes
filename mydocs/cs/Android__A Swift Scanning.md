@@ -51,13 +51,13 @@
 
 四大组件分别是：
 
-活动(Activity)，用于表现功能，一般一个页面是一个 Activity；
+活动（Activity），用于表现功能，一般一个页面是一个 Activity；
 
-服务(Service)，后台运行服务，不提供界面呈现；
+服务（Service），后台运行服务，不提供界面呈现；
 
-广播接收者(BroadcasC Receiver)，对发送出来的广播进行过滤接受并响应；
+广播接收者（BroadcastReceiver），对发送出来的广播进行过滤接受并响应；
 
-内容提供者(Content Provider)，不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外提供数据，允许其他应用操作本应用程序。
+内容提供者（Content Provider），不同应用程序之间进行数据交换的标准 API，以 URI 的形式对外提供数据，允许其他应用操作本应用程序。
 
 # UI 设计
 

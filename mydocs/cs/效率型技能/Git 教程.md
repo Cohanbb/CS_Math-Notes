@@ -109,7 +109,7 @@ $ cat .git/config
 	email = cohanbb777@163.com
 ```
 
-3. 新建一个文件 1.txt 添加内容 ”helloworld“，并使用 `git add 1.txt`，之后再次查看 .git 目录的内容：
+3. 新建一个文件 1.txt 添加内容“helloworld”，并使用 `git add 1.txt`，之后再次查看 .git 目录的内容：
 
 ```bash
 $ touch 1.txt
@@ -134,7 +134,7 @@ $ git cat-file -p 31e0fce560e96c8b357f5b8630c7d8fbeb0a3ec8
 helloworld
 ```
 
-1. 在工作区新建文件文件 2.txt 添加内容 ”1234“，并使用 `git add 2.txt`，再次查看 .git 目录的内容：
+4. 在工作区新建文件文件 2.txt 添加内容“1234”，并使用 `git add 2.txt`，再次查看 .git 目录的内容：
 
 ```bash
 $ touch 2.txt
@@ -147,7 +147,7 @@ $ ls -R .git
 
 发现 object 目录下生成了一个新的对象 81，使用 `git cat-file -p 81c545efebe5f57d4cab2ba9ec294c4b0cadf672` 进行读取得到 1234。
 
-1. 修改 1.txt 文件的内容，修改为 “1234”，并使用 `git add 1.txt`，再次查看 .git/objects 目录的内容： 
+5. 修改 1.txt 文件的内容，修改为 “1234”，并使用 `git add 1.txt`，再次查看 .git/objects 目录的内容： 
 
 ```bash
 $ echo "1234" > 1.txt
@@ -213,7 +213,7 @@ $ git cat-file -p dadc6837
 
 可看出 95 对象为 commit 型的哈希值，da 对象为 tree 型的哈希值，commit 里面存储了提交的目录树、作者和提交者的身份信息以及提交的名称。tree 里面存储了提交文件的权限、提交文件的哈希值及其类型、提交的文件名。
 
-1. 创建一个新的文件 3.txt 添加内容 “1234”，并使用 `git add` 以及 `git commit` 提交：
+2. 创建一个新的文件 3.txt 添加内容 “1234”，并使用 `git add` 以及 `git commit` 提交：
 
 ```bash
 $ touch 3.txt
@@ -325,7 +325,8 @@ git push #上传远程代码并合并
 ```
 
 ## 分支
-每一种版本控制系统都支持分支，一个分支代表一条独立的开发线，使用分支意味着可以从开发主线上分离开，然后在不影响主线的同时继续工作。  
+每一种版本控制系统都支持分支，一个分支代表一条独立的开发线，使用分支意味着可以从开发主线上分离开，然后在不影响主线的同时继续工作。
+
 Git 的分支即意味着与 master 分支提交的内容独立，在 master 分支提交的内容不会影响其他分支，在其他分支提交的内容也不会影响 master。  
 
 >注意：在任何分支进行提交操作之前，工作区的修改内容在任何分支都可见，一旦有任何分支进行提交操作，则其他分支回到上次提交操作后的状态。  
@@ -341,7 +342,8 @@ git branch -d  <branchname> #删除分支
 ```
 # GitHub
 
-GitHub 是基于 Git 的代码托管和版本控制平台，可以在上面创建仓库或项目。  
+GitHub 是基于 Git 的代码托管和版本控制平台，可以在上面创建仓库或项目。
+
 首先需要注册一个 GitHub 账号，然后在本地创建 SSH KEY：
 
 ```bash
@@ -361,7 +363,7 @@ $ git config --global user.name "your name"
 $ git config --global user.email "your email"  
 ```
 
-在 GitHub 新建一个仓库(repositry)，譬如 mycode，然后即可在本地进行远程仓库操作：
+在 GitHub 新建一个仓库（repositry），譬如 mycode，然后即可在本地进行远程仓库操作：
 
 ```bash
 $ mkdir mycode #创建本地仓库

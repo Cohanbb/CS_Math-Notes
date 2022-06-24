@@ -30,7 +30,7 @@
 
 ## 简介 
 
-HTML(HyperText Markup Language) **超文本**标记语言，何谓超文本？简单来说，超文本指具有超链接功能的文本，即一个超文本可以由若干个超链接构成，最常见的应用场景便是 Web 页面，也用于其他领域，譬如 Markdown 文档。
+HTML(HyperText Markup Language) **超文本标记语言**，何谓超文本？简单来说，超文本指具有超链接功能的文本，即一个超文本可以由若干个超链接构成，最常见的应用场景便是 Web 页面，也用于其他领域，譬如 Markdown 文档是基于 HTML 简化而来。
 
 ## 基本架构
 
@@ -448,7 +448,7 @@ a:link or visited or hover or active {
 ### 结构属性
 
 **盒子模型**   
-所有的 HTML 元素都可以看成一个盒子模型，包括外边距(margin)、边框(border)、内边距(padding)、内容(content)，内容指的是文本或图像等。
+所有的 HTML 元素都可以看成一个盒子模型，包括外边距（margin）、边框（border）、内边距（padding）、内容（content），内容指的是文本或图像等。
 
 ![](https://www.runoob.com/images/box-model.gif)
 
