@@ -362,7 +362,7 @@ PHP 是脚本语言，直接由 PHP 解释器解释执行，不需要进行编�
 ```php
 <?php
     function function_name(parameter_list) {
-        /*operation*/
+        /* operation */
         return ... ; // 返回值    
     }
 ?>
