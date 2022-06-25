@@ -29,13 +29,13 @@ Go 语言的基本结构：
 * 注释
 
 ```go
-package main //包声明
+package main // 包声明
 
-import "fmt" //包导入
+import "fmt" // 包导入
 
 /*主函数*/
 func main() {
-    var s = "hello world!" //Go 不用写分号
+    var s = "hello world!" // Go 不用写分号
     fmt.Println(s)
 }
 ```
@@ -66,10 +66,10 @@ Go 中有四大类数据类型：
 Go 变量的声明和初始化：
 
 ```go
-/*声明时初始化*/
+/* 声明时初始化 */
 var identifier type = value
 
-/*声明后初始化*/
+/* 声明后初始化 */
 var identifier type
 identifier = value
 ```

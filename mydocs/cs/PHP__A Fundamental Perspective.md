@@ -79,34 +79,34 @@ PHP 文件可以包含 PHP 代码、HTML 和 JavaScript 代码，在服务端执
 
 ```php
 <?php
-    /*整型*/
+    /* 整型 */
     $a = 1;
     
-    /*浮点型*/
+    /* 浮点型 */
     $b1 = 1.1;
     $b2 = 9.9e-10;
     $b3 = 5E-10;
     
-    /*字符串*/
+    /* 字符串 */
     $c = "PHP";
     
-    /*bool 型*/
+    /* bool 型 */
     $d1 = TRUE;
     $d2 = FALSE;
     
-    /*数组*/
+    /* 数组 */
     $e = array("I", "LOVE", "YOU"); 
     
-    /*类与对象*/
+    /* 类与对象 */
     class F {
         ......
     }
     $f = new F;
     
-    /*Null*/
+    /* Null */
     $g = null;
     
-    /*resource 型*/
+    /* resource 型 */
     $h1 = mysqli_connect(...);
     $h2 = fopen(...);
 ?>
@@ -124,7 +124,7 @@ PHP 文件可以包含 PHP 代码、HTML 和 JavaScript 代码，在服务端执
     } else if (TRUE === "TRUE") {
         echo "相等2";
     }
-    //将输出 相等1
+    // 将输出：相等1
 ?>
 ```
 
@@ -135,13 +135,13 @@ PHP 常量的定义需要使用 `define()` 函数，函数用法为：
 ```php
 <?php
     bool define(string $name, mixed $value [, bool $case_insensitive = false])
-    /*$name 为常量名，$value 为常量值，$case_insensitive 表示常量名是否大小写不敏感*/
+    /* $name 为常量名，$value 为常量值，$case_insensitive 表示常量名是否大小写不敏感 */
 
     define("A", "123", TRUE);
     echo a;
     echo A; 
-    /*将输出两次 123
-     *若没有设置为大小写不敏感，则 echo a 将报错
+    /* 将输出两次 123
+     * 若没有设置为大小写不敏感，则 echo a 将报错
      */
 ?>
 ```
@@ -169,7 +169,7 @@ PHP 在局部使用全局变量：
         $b = 10;
         
         function Maxab() {
-            global $a, $b;
+            global $a, $b; // 声明使用全局变量 a 和 b
             if ($a >= $b) {
                 return $a;
             } else { 
@@ -217,7 +217,7 @@ PHP 中需掌握三种字符串操作：
     <?php
         $str1 = "Hel";
         $str2 = "leo";
-        echo $str1 . $str2; //将输出 Hello
+        echo $str1 . $str2; // 将输出 Hello
     ?>
     ```
     
@@ -246,7 +246,7 @@ PHP 中数组类型：
 
  ```php
  <?php
-     /*数值数组*/
+     /* 数值数组 */
      $a = array("1", "2", "3");
      echo a[0];
      echo a[1];
@@ -255,7 +255,7 @@ PHP 中数组类型：
          echo $value;
      }
 
-    /*关联数组*/
+    /* 关联数组 */
     $b = array("a" => "1", "b" => "2", "c" => "3");
     echo b['a'];
     echo b['b'];
@@ -266,7 +266,7 @@ PHP 中数组类型：
         echo $x_value;
     }
 
-    /*多维数组*/
+    /* 多维数组 */
     $c = array(
         "c1" => array(
             array("1", "2", "3"),
@@ -298,42 +298,27 @@ PHP 中的选择语句与 C 语言完全相同，使用 `if-else` 语句或 `swi
 
 ```php
 <?php
-    /*if-else 语句*/
-    if (condition1) {
-        /*
-            执行体
-         */
-    } else if (condition2) {
-        /*
-            执行体    
-         */
+    /* if-else 语句 */
+    if (/* condition1 */) {
+        /* operation */
+    } else if (/* condition2 */) {
+        /* operation */
     } else {
-        /*
-            执行体
-         */
+        /* operation */
     }
 
-    /*switch-case 语句*/
-    switch (...) {
-        case ... : {
-            /*
-                执行体
-             */
-        }
-        case ... : {
-            /*
-                执行体
-             */
-        }
+    /* switch-case 语句 */
+    switch (/* identifier or expression */) {
+        case /* value1 */: 
+            /* operation */
+        case /* value2*/: 
+            /* operation */
         /* 
-         ...... 
+         * ...... 
          */
         break;
-        default: {
-            /*
-                执行体
-             */
-        }
+        default:
+            /* operation */
     }
 ?>
 ```
@@ -345,32 +330,26 @@ PHP 中的循环语句在 C 语言提供的 `while`、`do while`、`for` 的基�
 
 ```php
 <?php
-    /*while 循环*/
-    while (condition) {
-        /*
-            循环体
-         */
+    /* while 型 */
+    while (/* condition */) {
+        /* operation */
     }
 
-    /*do while 循环*/
+    /* do-while 型 */
     do {
-        /*
-            循环体
-         */
-    } while (condition)
+        /* operation */
+    } while (/* condition */)
 
-    /*for 循环*/
-    for (initializing; condition; addition) {
-        /*
-            循环体
-         */
+    /* for 型 */
+    for (/* initializing */; /* condition */; /* addition */) {
+        /* operation */
     }
 
-    /*foreach 循环用于遍历数组*/
+    /* foreach 型用于遍历数组 */
     $a = array ("1", "2", "3");
     foreach ($a as $value) {
         echo $value;
-    } //将输出 123
+    } // 将输出 123
 ?>
 ```
 
@@ -383,10 +362,8 @@ PHP 是脚本语言，直接由 PHP 解释器解释执行，不需要进行编�
 ```php
 <?php
     function function_name(parameter_list) {
-        /*
-            函数主体
-         */
-        return ... ; //返回值    
+        /*operation*/
+        return ... ; // 返回值    
     }
 ?>
 ```
@@ -400,55 +377,55 @@ PHP 面向对象的使用方法与 C++ 类似：
 ```php
 <?php
 class php_class {
-    /*成员变量*/
+    /* 成员变量 */
     public $var1;
-    //var $var1;
+    // var $var1;
     protected $var2;
     private $var3;
     
-    /*构造函数*/
+    /* 构造函数 */
     function __construct($par1, $par2) {
         $this->var1 = $par1;
         $this->var2 = $par2;
     }
     
-    /*析构函数*/
+    /* 析构函数 */
     function __destruct() {
         echo "销毁对象" . this->name;
     }
     
-    /*成员函数*/
+    /* 成员函数 */
     function fun($par) {
         echo $par;   
     }
 }
 
-/*声明对象*/
+/* 声明对象 */
 $obj = new php_class(1, 2);
 
-/*调用成员函数*/
+/* 调用成员函数 */
 $obj -> fun(1);
 
-/*继承*/
+/* 继承 */
 class child_class extends php_class {
     /* 代码 */
 }
 
-/*接口*/
-//声明接口
+/* 接口 */
+// 声明接口
 interface A {
     public function fun(parameter_list);
 }
 
-//实现接口
+// 实现接口
 class a implements A {
     public function fun(parameter_list) {
-        /*function code*/
+        /* operation */
     } 
 }
 
-/*抽象类*/
-//定义抽象类
+/* 抽象类 */
+// 定义抽象类
 abstract class B {
     abstract protected function fun1(parameter_list);
     public function fun2();
@@ -456,7 +433,7 @@ abstract class B {
 
 class b extends B {
     protected function fun1(parameter_list) {
-        /*function code*/
+        /* operation */
     }
 }
 ?>
@@ -471,9 +448,9 @@ class b extends B {
 ```php
 <?php
     header(string, replace, http_response_code)
-    /*string 表示要发送的报头字符串
-     *replace 表示是否代替原来的报头，默认 TRUE
-     *http_response_code 可选，表示把 HTTP 响应强制为指定的值
+    /* string 表示要发送的报头字符串
+     * replace 表示是否代替原来的报头，默认 TRUE
+     * http_response_code 可选，表示把 HTTP 响应强制为指定的值
      */
 ?>
 ```
@@ -493,7 +470,7 @@ class b extends B {
 例如想要收集 get 方式提交的数据 DEMO:
 
 ```php
-//demo.php
+/* demo.php */
 <html>
     <form action="demo.php" method="get">
         <input type="text" name="DEMO"/>
@@ -516,10 +493,10 @@ PHP 使用 `setcookie()` 函数设置 cookie：
 
 ```php
 <?php
-    /*函数原型*/
+    /* 函数原型 */
     setcookie(name, value, expire, path, domain);
     
-    /*设置 cookie 并于 3600 秒后过期*/
+    /* 设置 cookie 并于 3600 秒后过期 */
     setcookie("user", "Cohanbb", time() + 3600);
 ?>
 ```
@@ -536,7 +513,7 @@ PHP 使用 `setcookie()` 函数设置 cookie：
 
 ```php
 <?php
-    /*将时间设为过去的时间即可删除 cookie*/
+    /* 将时间设为过去的时间即可删除 cookie */
     setcookie("user", "", time() - 1); 
 ?>
 ```
@@ -553,20 +530,19 @@ PHP 操作 session：
 <?php
     session_start();
 
-    /*设置 session*/
+    /* 设置 session */
     $_SESSION["name"] = "Cohanbb";
     
-    /*获取 session*/
+    /* 获取 session */
     $name = $_SESSION["name"];
     
-    /*清空 session*/
+    /* 清空 session */
     session_unset();
     
-    /*销毁 session*/
+    /* 销毁 session */
     session_destroy();
 ?>
 ```
-
 
 ## PHP 操作数据库
 
@@ -579,15 +555,15 @@ PHP 通过 `MySQLi` 或 `PDO` 连接和操作数据库，`PDO` 可以应用在12
 
 ```php
 <?php
-    /*面向过程*/
-    $conn = mysqli_connect("localhost", "root", "123456");
+    /* 面向过程*/
+    $conn = my sqli_connect("localhost", "root", "123456");
     if (!$conn) {
         die("数据库连接失败：" . mysqli_connect_error()));
     }
     echo "数据库连接成功";
     mysqli_close($conn);
     
-    /*面向对象*/
+    /* 面向对象 */
     $conn = new mysqli("localhost", "root", "123456");
     if ($conn->connect_error) {
         die("数据库连接失败：" . $conn->connect_error);
@@ -602,13 +578,13 @@ PHP 通过 `MySQLi` 或 `PDO` 连接和操作数据库，`PDO` 可以应用在12
 
 ```php
 <?php
-    /*面向过程*/
+    /* 面向过程 */
     $sql = "SELECT * FROM users";
     if (!mysqli_query($conn, $sql)) {
         die("查询失败");
     }
 
-    /*面向对象*/
+    /* 面向对象 */
     $sql = "SELECT * FROM users";
     if (!($conn->query($sql))) {
         die("查询失败");
@@ -645,13 +621,13 @@ PHP 有四种文件包含方式：
 
 ```php
 <?php
-    /*普通方式包含*/
+    /* 普通方式包含 */
     include "file.php";
     require "file.php";
     include_once "file.php";
     require_once "file.php"; 
 
-    /*get 方式传参包含*/
+    /* get 方式传参包含 */
     $file = $_GET["FILE"];
     include($file);
     require($file);
@@ -664,7 +640,7 @@ PHP 中使用 `fopen()` 函数打开文件，`fwrite()` 函数写入文件，`fc
 
 ```php
 <?php
-    $file = fopen("test.txt", "r"); //以只读方式打开 test.txt 文件
+    $file = fopen("test.txt", "r"); // 以只读方式打开 test.txt 文件
     $str = "123";
     fwrite($file, "str");
     fclose($file);
@@ -690,7 +666,7 @@ PHP 使用 `$_FILES` 超级全局变量进行文件上传，`$_FILES` 是一个�
 
 ```php
 $_FILES = array(
-    /*假设 filename 为 HTML 表单中 <input "name" /> 的值*/
+    /* 假设 filename 为 HTML 表单中 <input "name" /> 的值 */
     "filename" => array(
         "name" => 被上传的文件名称
         "type" => 被上传的文件类型
@@ -718,7 +694,7 @@ $_FILES = array(
 ```php
 upload.php
 <?php
-    /*限制上传文件的类型和大小*/
+    /* 限制上传文件的类型和大小 */
     if ((($_FILES["filename"]["type"] == "image/gif") 
       || ($_FILES["filename"]["type"] == "image/jpeg") 
       || ($_FILES["filename"]["type"] =="image/pjpeg")) 
@@ -726,12 +702,12 @@ upload.php
         if ($_FILES["filename"]["error"]) {
             echo "错误：" . $_FILES["filename"]["error"] . "<br />";
         } else {
-            /*输出上传的文件信息*/
+            /* 输出上传的文件信息 */
             echo "文件名：" . $_FILES["filename"]["name"] . "<br />";
             echo "文件类型：" . $_FILES["filename"]["type"] . "<br />";
             echo "文件大小" . ($_FILES["filename"]["size"] / 1024) . "Kb<br />";
             echo "文件副本：" . $_FILES["filename"]["tmp_name"] . "<br />";
-            /*将文件存储在服务器*/
+            /* 将文件存储在服务器 */
             if (file_exists("upload/" . $_FILES["filename"]["name"])) {
                 echo $_FILES["filename"]["name"] . "已经存在";
             } else {

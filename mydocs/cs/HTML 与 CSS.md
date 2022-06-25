@@ -441,9 +441,9 @@ CSS(Cascading Style Sheets) 层叠样式表，用以定义 HTML 中元素的样�
 
 ```css
 a:link or visited or hover or active {
-    background-color:; /*链接背景颜色*/
-    color:; /*链接字体颜色*/
-    text-decoration:; /*链接文本画线修饰*/
+    background-color:; /* 链接背景颜色 */
+    color:; /* 链接字体颜色 */
+    text-decoration:; /* 链接文本画线修饰 */
 }
 ```
 
