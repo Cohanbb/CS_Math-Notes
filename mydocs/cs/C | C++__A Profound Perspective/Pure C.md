@@ -8,19 +8,19 @@ C 语言编译执行的过程：
 
 对源程序进行预处理替换，呈现出完整的程序。
 
-.c file $\longrightarrow$ .i file
+**.c file** $\longrightarrow$ **.i file**
 
 2. 编译
 
 将预处理后的程序编译成汇编程序。
 
-.i file $\longrightarrow$ .s file
+**.i file** $\longrightarrow$ **.s file**
 
 3. 汇编
 
 将汇编程序转换为机器指令。
 
-.s file $\longrightarrow$ .o file
+**.s file** $\longrightarrow$ **.o file**
 
 4. 链接
 
@@ -214,7 +214,7 @@ C 语言是需要编译的语言，程序中函数在被调用之前必须声明
 /*
  * 函数的定义：
  * return_type func_identifier (parameter_list) {
- *    operation
+ *     operation
  * }
  */
 int Add(int a) {
