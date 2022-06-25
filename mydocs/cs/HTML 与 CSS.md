@@ -504,7 +504,7 @@ a:link or visited or hover or active {
 
 * visible：默认值，超出的内容会呈现在边框外面。 
 * hidden：溢出内容被修剪，且被隐藏。
-*  scroll：溢出内容被修剪，显示滚动条。
+* scroll：溢出内容被修剪，显示滚动条。
 * auto：浏览器根据情况自动添加滚动条。
 * inherit：继承父元素的 overflow 属性值。
 
