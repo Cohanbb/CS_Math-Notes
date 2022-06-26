@@ -371,7 +371,7 @@ int color = Color.parseColor("#00CCFF");
 
 **goneMargin**
 
-goneMargin主要用于约束的控件可见性被设置为gone的时候使用的margin值。
+goneMargin 主要用于约束的控件可见性被设置为gone的时候使用的margin值。
 
 ```xml
 <!--

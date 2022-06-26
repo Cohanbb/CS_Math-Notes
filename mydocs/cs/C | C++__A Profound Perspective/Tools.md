@@ -4,10 +4,10 @@
 
 ## GDB
 
-## make
+## Make
 
-## cmake
+## CMake
 
-## Visual Studio
+## IDE: Visual Studio
 
-## Qt Creator
+## IDE: Qt Creator

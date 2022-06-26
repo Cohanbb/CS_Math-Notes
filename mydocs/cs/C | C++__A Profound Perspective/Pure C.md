@@ -6,25 +6,25 @@ C 语言编译执行的过程：
 
 1. 预处理
 
-对源程序进行预处理替换，呈现出完整的程序。
+    对源程序进行预处理替换，呈现出完整的程序。
 
-**.c file** $\longrightarrow$ **.i file**
+    **.c file** $\longrightarrow$ **.i file**
 
 2. 编译
 
-将预处理后的程序编译成汇编程序。
+    将预处理后的程序编译成汇编程序。
 
-**.i file** $\longrightarrow$ **.s file**
+    **.i file** $\longrightarrow$ **.s file**
 
 3. 汇编
 
-将汇编程序转换为机器指令。
+    将汇编程序转换为机器指令。
 
-**.s file** $\longrightarrow$ **.o file**
+    **.s file** $\longrightarrow$ **.o file**
 
 4. 链接
 
-链接库文件并生成可执行文件。
+    链接库文件并生成可执行文件。
 
 
 ## 预处理和宏定义
@@ -179,7 +179,7 @@ switch (/* identifier or expression */) {
 
 若 condition 为真，则执行 operation1，否则执行 operation2。
 
-### 迭代结构
+### 循环结构
 
 ```c
 /* while 型 */
@@ -231,9 +231,6 @@ int Add(int a) {
 
 ### 函数调用栈帧
 
-
-
-
 ## 数组
 
 ### 一维数组
@@ -257,6 +254,18 @@ int Add(int a) {
 ### C_Style String
 
 ## 指针
+
+C 语言中的空指针 `NULL`
+
+```c
+#define NULL ((void *)0)
+```
+
+C++ 中的空指针 `NULL`
+
+```cpp
+#define NULL 0
+```
 
 ## 自定义数据类型
 
