@@ -1,0 +1,11 @@
+{
+  "defaultViewMode": "preview",
+  "legacyEditor": false,
+  "strictLineBreaks": true,
+  "newFileLocation": "current",
+  "newFileFolderPath": "im",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "attachmentFolderPath": "./image",
+  "promptDelete": false
+}

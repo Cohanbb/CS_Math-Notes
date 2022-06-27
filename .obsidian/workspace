@@ -1,0 +1,119 @@
+{
+  "main": {
+    "id": "d5f6c110c7e997e6",
+    "type": "split",
+    "children": [
+      {
+        "id": "30e72e836950996a",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "mydocs/cs/数据结构/数据结构_线性表，栈、队列和数组.md",
+            "mode": "preview",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "acdc69e9b3fd41e0",
+    "type": "split",
+    "children": [
+      {
+        "id": "f831a0216b91d2a0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c4f30d5d0a55c53",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "87ee528ef8b4ef34",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "6ad664c6f1f47e9d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ba0d9a95551d364",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "mydocs/cs/数据结构/数据结构_线性表，栈、队列和数组.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3bfa751b8c4fea9a",
+    "type": "split",
+    "children": [
+      {
+        "id": "d9ac9cb2f588512d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66900a773d6fe9b7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "mydocs/cs/数据结构/数据结构_线性表，栈、队列和数组.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "30e72e836950996a",
+  "lastOpenFiles": [
+    "mydocs/cs/数据结构/数据结构_线性表，栈、队列和数组.md",
+    "mydocs/math/考研数学基础.md",
+    "mydocs/personal/信息内容安全报告.md",
+    "mydocs/personal/image/Pasted image 20220627183233.png",
+    "mydocs/personal/image/Pasted image 20220627172046.png",
+    "mydocs/personal/image/Pasted image 20220627130538.png",
+    "mydocs/personal/image/Pasted image 20220627113921.png",
+    "mydocs/personal/image/Pasted image 20220627130510.png",
+    "mydocs/personal/image/Pasted image 20220627160841.png",
+    "mydocs/personal/image/Pasted image 20220627113627.png"
+  ]
+}
