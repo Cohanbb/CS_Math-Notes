@@ -4,14 +4,12 @@
 
 本文整理了一些对编程和学习非常有用的网站链接。
 
-- [Awesome: Web Link](#awesome-web-link)
-  - [Abstract](#abstract)
-  - [Primary](#primary)
-  - [Learning](#learning)
-  - [Useful Sites](#useful-sites)
-  - [Softwares & Projects](#softwares--projects)
-  - [Infosecurity](#infosecurity)
-  - [Documentations](#documentations)
+- [Primary](#primary) $\Longrightarrow$ 最重要的网站
+- [Learning](#learning) $\Longrightarrow$ 学习编程和获取资源网站
+- [Useful Sites](#useful-sites) $\Longrightarrow$ 一些实用的网站
+- [Softwares & Projects](#softwares--projects) $\Longrightarrow$ 实用的软件和项目
+- [Infosecurity](#infosecurity) $\Longrightarrow$ 信息安全相关
+- [Documentations](#documentations) $\Longrightarrow$ 非常有用的文档
 
 ## Primary
   
