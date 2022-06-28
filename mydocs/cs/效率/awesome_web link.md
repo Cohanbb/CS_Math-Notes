@@ -1,10 +1,8 @@
 # Awesome: Web Link
 
-
 ## Abstract
 
 本文整理了一些对编程和学习非常有用的网站链接。
-
 
 - [Awesome: Web Link](#awesome-web-link)
   - [Abstract](#abstract)
@@ -14,7 +12,6 @@
   - [Softwares & Projects](#softwares--projects)
   - [Infosecurity](#infosecurity)
   - [Documentations](#documentations)
-
 
 ## Primary
   
@@ -204,7 +201,7 @@
 * [NumPy 官方文档](https://numpy.org/doc/)
 * [SciPy 官方文档](https://docs.scipy.org/doc/scipy/)
 * [Pandas 官方文档](https://pandas.pydata.org/docs/)
-* [scikit-learn 中文文档](https://sklearn.apachecn.org/))
+* [scikit-learn 中文文档](https://sklearn.apachecn.org/)
 * [Django 官方文档](https://docs.djangoproject.com/zh-hans/4.0/)
 * [Flask 官方文档](https://flask-zh.readthedocs.io/)
 * [OpenCV 官方文档](https://docs.opencv.org/)
