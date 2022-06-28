@@ -1,5 +1,21 @@
 # Awesome: Web Link
 
+
+## Abstract
+
+本文整理了一些对编程和学习非常有用的网站链接。
+
+
+- [Awesome: Web Link](#awesome-web-link)
+  - [Abstract](#abstract)
+  - [Primary](#primary)
+  - [Learning](#learning)
+  - [Useful Sites](#useful-sites)
+  - [Softwares & Projects](#softwares--projects)
+  - [Infosecurity](#infosecurity)
+  - [Documentations](#documentations)
+
+
 ## Primary
   
 * [GitHub](https://github.com/)
@@ -112,27 +128,39 @@
 
   搜索电子书。
   
+* [Tampermonkey](https://www.tampermonkey.net/)
 
+  油猴插件，yyds！
+
+* [Extfans](https://www.extfans.com/)
+
+  浏览器插件。
+  
+* [Greasy Fork](https://greasyfork.org/)
+
+  浏览器插件。
+  
+* [ScriptCat](https://scriptcat.org/search/)
+  
+  浏览器插件。
+  
 ## Softwares & Projects
 
-* [Visual Studio Code]()
+* [Visual Studio Code](https://code.visualstudio.com/)
 
   宇宙第一代码编辑器，插件丰富，功能强大，跨平台（Windows/MacOS/Linux/Web）。
 
-* [Typora]()
+* [Typora](https://typoraio.cn/)
 
   最强 Markodwn 文本编辑器，可惜收费了。
 
-* [Obsidian]()
+* [Obsidian](https://obsidian.md/)
 
   支持实时预览的 Markdown 编辑器，还有文档反链功能，关键是免费。
 
-* [Pandoc]()
+* [Pandoc](https://pandoc.org/)
 
   文件格式转换神器。
-
-* [Tampermonkey]()
-
 
 ## Infosecurity
 
@@ -147,6 +175,13 @@
 * [Infosecurity Magazine](https://www.infosecurity-magazine.com/)
   
 ## Documentations
+* [DevDocs](https://devdocs.io/)
+
+  开源免费网站，与开发相关的文档的集合，种类繁多，版本齐全！
+
+* [ApacheCN](https://docs.apachecn.org/)
+
+  中文开源项目，提供各种文档的中文翻译，respect！
 
 * [C/C++ Reference](https://en.cppreference.com/w/)
 * [GNU C 语言文档](https://www.gnu.org/software/libc/manual/)
@@ -164,15 +199,12 @@
 * [MySQL 中文文档](https://docs.gitcode.net/mysql/guide/)
 * [Redis 官方文档](https://redis.io/)
 * [Vue.js 官方文档](https://v3.cn.vuejs.org/guide/)
-* [Node.js 官方文档]()
+* [Node.js 官方文档](http://nodejs.cn/api/)
 * [Python 官方文档](https://docs.python.org/)
-* [NumPy 官方文档]()
-* [SciPy 官方文档]()
-* [Django 官方文档]()
-* [Flask 官方文档]()
+* [NumPy 官方文档](https://numpy.org/doc/)
+* [SciPy 官方文档](https://docs.scipy.org/doc/scipy/)
+* [Pandas 官方文档](https://pandas.pydata.org/docs/)
+* [scikit-learn 中文文档](https://sklearn.apachecn.org/))
+* [Django 官方文档](https://docs.djangoproject.com/zh-hans/4.0/)
+* [Flask 官方文档](https://flask-zh.readthedocs.io/)
 * [OpenCV 官方文档](https://docs.opencv.org/)
-
-
-## Blogs
-
-* 
