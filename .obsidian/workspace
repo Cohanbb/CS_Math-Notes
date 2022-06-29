@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "mydocs/cs/效率/awesome_web link.md",
+            "file": "mydocs/cs/安全/信息系统安全.md",
             "mode": "source",
             "source": false
           }
@@ -25,7 +25,6 @@
       {
         "id": "f831a0216b91d2a0",
         "type": "tabs",
-        "dimension": 75.42120911793855,
         "children": [
           {
             "id": "8c4f30d5d0a55c53",
@@ -53,9 +52,8 @@
         ]
       },
       {
-        "id": "6ad664c6f1f47e9d",
+        "id": "1331f978174c4b9b",
         "type": "tabs",
-        "dimension": 24.578790882061448,
         "children": [
           {
             "id": "8ba0d9a95551d364",
@@ -63,7 +61,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mydocs/cs/效率/awesome_web link.md"
+                "file": "mydocs/cs/安全/信息系统安全.md"
               }
             }
           }
@@ -71,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3bfa751b8c4fea9a",
@@ -87,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mydocs/cs/效率/awesome_web link.md",
+                "file": "mydocs/cs/安全/信息系统安全.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,15 +106,15 @@
   },
   "active": "30e72e836950996a",
   "lastOpenFiles": [
+    "mydocs/cs/安全/信息系统安全.md",
+    "mydocs/cs/安全/网络安全基础.md",
+    "mydocs/cs/HTML - CSS.md",
+    "mydocs/cs/安全/逆向工程.md",
+    "mydocs/cs/安全/浅析 Crypto.md",
+    "mydocs/cs/安全/Web 攻防.md",
     "mydocs/cs/效率/awesome_web link.md",
     "mydocs/cs/效率/*.md",
     "mydocs/cs/效率/Docker 教程.md",
-    "mydocs/personal/信息内容安全报告.md",
-    "mydocs/cs/数据结构/数据结构_线性表，栈、队列和数组.md",
-    "mydocs/math/考研数学基础.md",
-    "mydocs/personal/image/Pasted image 20220627183233.png",
-    "mydocs/personal/image/Pasted image 20220627172046.png",
-    "mydocs/personal/image/Pasted image 20220627130538.png",
-    "mydocs/personal/image/Pasted image 20220627113921.png"
+    "mydocs/personal/信息内容安全报告.md"
   ]
 }
