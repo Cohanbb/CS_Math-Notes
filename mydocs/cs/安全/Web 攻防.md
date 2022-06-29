@@ -8,14 +8,11 @@
 
 ### Shodan
 
-
 ## 端口扫描与漏洞分析
 
 ### Nmap
 
-### Burpsuite
-
-### AWVS
+### Burp Suite
 
 ## SQL 注入 
 
@@ -82,7 +79,7 @@ union select 1,(select group_concat(username) from security.users),(select group
 另一种是通过表单注入 XSS，比如：
 
 ```php
-//demo.php
+// demo.php
 <?php
     $str = $_GET['input'];
 ?>
@@ -107,7 +104,7 @@ union select 1,(select group_concat(username) from security.users),(select group
 可一定程度上防止 XSS，但无法完全防御，使用 onclick、oninput、onmouseover 等 JS 事件依然可以完成弹窗，例如：
 
 ```php
-//demo.php
+// demo.php
 <?php
     $str = htmlspecialchars($_GET['input']);
 ?>
@@ -209,11 +206,11 @@ function checkFile() {
         alert("请选择要上传的文件!");
         return false;
     }
-    //定义允许上传的文件类型
+    // 定义允许上传的文件类型
     var allow_ext = ".jpg|.png|.gif";
-    //提取上传文件的类型
+    // 提取上传文件的类型
     var ext_name = file.substring(file.lastIndexOf("."));
-    //判断上传文件类型是否允许上传
+    // 判断上传文件类型是否允许上传
     if (allow_ext.indexOf(ext_name + "|") == -1) {
         var errMsg = "该文件不允许上传，请上传" + allow_ext + "类型的文件,当前文件类型为：" + ext_name;
         alert(errMsg);
@@ -263,11 +260,11 @@ if (isset($_POST['submit'])) {
     if (file_exists(UPLOAD_PATH)) {
         $deny_ext = array('.asp','.aspx','.php','.jsp');
         $file_name = trim($_FILES['upload_file']['name']);
-        $file_name = deldot($file_name);//删除文件名末尾的点
+        $file_name = deldot($file_name);// 删除文件名末尾的点
         $file_ext = strrchr($file_name, '.');
-        $file_ext = strtolower($file_ext); //转换为小写
-        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA
-        $file_ext = trim($file_ext); //收尾去空
+        $file_ext = strtolower($file_ext); // 转换为小写
+        $file_ext = str_ireplace('::$DATA', '', $file_ext);// 去除字符串::$DATA
+        $file_ext = trim($file_ext); // 收尾去空
 
         if(!in_array($file_ext, $deny_ext)) {
             $temp_file = $_FILES['upload_file']['tmp_name'];
@@ -300,11 +297,11 @@ if (isset($_POST['submit'])) {
     if (file_exists(UPLOAD_PATH)) {
         $deny_ext = array(".php",".php5",".php4",".php3",".php2","php1",".html",".htm",".phtml",".pht",".pHp",".pHp5",".pHp4",".pHp3",".pHp2","pHp1",".Html",".Htm",".pHtml",".jsp",".jspa",".jspx",".jsw",".jsv",".jspf",".jtml",".jSp",".jSpx",".jSpa",".jSw",".jSv",".jSpf",".jHtml",".asp",".aspx",".asa",".asax",".ascx",".ashx",".asmx",".cer",".aSp",".aSpx",".aSa",".aSax",".aScx",".aShx",".aSmx",".cEr",".sWf",".swf");
         $file_name = trim($_FILES['upload_file']['name']);
-        $file_name = deldot($file_name);//删除文件名末尾的点
+        $file_name = deldot($file_name);// 删除文件名末尾的点
         $file_ext = strrchr($file_name, '.');
-        $file_ext = strtolower($file_ext); //转换为小写
-        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA
-        $file_ext = trim($file_ext); //收尾去空
+        $file_ext = strtolower($file_ext); // 转换为小写
+        $file_ext = str_ireplace('::$DATA', '', $file_ext);// 去除字符串::$DATA
+        $file_ext = trim($file_ext); // 收尾去空
 
         if (!in_array($file_ext, $deny_ext)) {
             $temp_file = $_FILES['upload_file']['tmp_name'];
@@ -344,10 +341,10 @@ if (isset($_POST['submit'])) {
     if (file_exists(UPLOAD_PATH)) {
         $deny_ext = array(".php",".php5",".php4",".php3",".php2",".html",".htm",".phtml",".pht",".pHp",".pHp5",".pHp4",".pHp3",".pHp2",".Html",".Htm",".pHtml",".jsp",".jspa",".jspx",".jsw",".jsv",".jspf",".jtml",".jSp",".jSpx",".jSpa",".jSw",".jSv",".jSpf",".jHtml",".asp",".aspx",".asa",".asax",".ascx",".ashx",".asmx",".cer",".aSp",".aSpx",".aSa",".aSax",".aScx",".aShx",".aSmx",".cEr",".sWf",".swf",".htaccess");
         $file_name = trim($_FILES['upload_file']['name']);
-        $file_name = deldot($file_name);//删除文件名末尾的点
+        $file_name = deldot($file_name);// 删除文件名末尾的点
         $file_ext = strrchr($file_name, '.');
-        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA
-        $file_ext = trim($file_ext); //首尾去空
+        $file_ext = str_ireplace('::$DATA', '', $file_ext);// 去除字符串::$DATA
+        $file_ext = trim($file_ext); // 首尾去空
 
         if (!in_array($file_ext, $deny_ext)) {
             $temp_file = $_FILES['upload_file']['tmp_name'];
@@ -376,10 +373,10 @@ if (isset($_POST['submit'])) {
     if (file_exists(UPLOAD_PATH)) {
         $deny_ext = array(".php",".php5",".php4",".php3",".php2",".html",".htm",".phtml",".pht",".pHp",".pHp5",".pHp4",".pHp3",".pHp2",".Html",".Htm",".pHtml",".jsp",".jspa",".jspx",".jsw",".jsv",".jspf",".jtml",".jSp",".jSpx",".jSpa",".jSw",".jSv",".jSpf",".jHtml",".asp",".aspx",".asa",".asax",".ascx",".ashx",".asmx",".cer",".aSp",".aSpx",".aSa",".aSax",".aScx",".aShx",".aSmx",".cEr",".sWf",".swf",".htaccess");
         $file_name = $_FILES['upload_file']['name'];
-        $file_name = deldot($file_name);//删除文件名末尾的点
+        $file_name = deldot($file_name);// 删除文件名末尾的点
         $file_ext = strrchr($file_name, '.');
-        $file_ext = strtolower($file_ext); //转换为小写
-        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA
+        $file_ext = strtolower($file_ext); // 转换为小写
+        $file_ext = str_ireplace('::$DATA', '', $file_ext);// 去除字符串::$DATA
         
         if (!in_array($file_ext, $deny_ext)) {
             $temp_file = $_FILES['upload_file']['tmp_name'];

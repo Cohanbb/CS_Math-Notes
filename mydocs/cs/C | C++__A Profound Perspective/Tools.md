@@ -8,8 +8,8 @@
 
 ## CMake
 
+## Code Editor: Visual Studio Code
+
 ## IDE: Visual Studio
-
-
 
 ## IDE: Qt Creator
