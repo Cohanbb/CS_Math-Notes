@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "mydocs/cs/安全/core.md",
+            "file": "mydocs/cs/安全/信息系统安全.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mydocs/cs/安全/core.md"
+                "file": "mydocs/cs/安全/信息系统安全.md"
               }
             }
           }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3bfa751b8c4fea9a",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mydocs/cs/安全/core.md",
+                "file": "mydocs/cs/安全/信息系统安全.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,15 +106,15 @@
   },
   "active": "30e72e836950996a",
   "lastOpenFiles": [
-    "mydocs/cs/安全/core.md",
     "mydocs/cs/安全/信息系统安全.md",
-    "mydocs/cs/安全/浅析 Crypto.md",
-    "mydocs/cs/安全/网络安全基础.md",
-    "mydocs/cs/HTML - CSS.md",
-    "mydocs/cs/安全/逆向工程.md",
     "mydocs/cs/安全/Web 攻防.md",
-    "mydocs/cs/效率/awesome_web link.md",
-    "mydocs/cs/效率/*.md",
-    "mydocs/cs/效率/Docker 教程.md"
+    "mydocs/cs/安全/网络安全基础.md",
+    "mydocs/cs/安全/逆向工程.md",
+    "mydocs/cs/安全/浅析 Crypto.md",
+    "mydocs/cs/安全/image/Pasted image 20220630125545.png",
+    "mydocs/cs/安全/image/Pasted image 20220630125932.png",
+    "mydocs/cs/安全/image/Pasted image 20220630125808.png",
+    "mydocs/cs/安全/image/Pasted image 20220630125623.png",
+    "mydocs/cs/安全/image/Pasted image 20220526153112.png"
   ]
 }

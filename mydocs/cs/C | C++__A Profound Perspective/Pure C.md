@@ -66,7 +66,7 @@ C 语言的基本数据类型，在 32 位或 64 位编译器下：
 | double | 8 | [2.3E-308, 1.7E+308] 精度 15 或 16|
 | long double | 8 或 12 或 16| 略|
 
-这些数据类型是如何存储的？为什么不同数据类型的存储字节数不同？学习 [组成原理_数据的表示与运算]()
+这些数据类型是如何存储的？为什么不同数据类型的存储字节数不同？请学习 [组成原理_数据的表示与运算]()
 
 ```c
 int a = 100; // 十进制 100
@@ -97,7 +97,7 @@ char e2 = 97; // 字符 a 的 ASCII 码
 
 * `auto` 类型，局部变量的默认类型，存储在内存中的栈区，作用域和生存期都在局部代码块内。
 
-* `register` 类型，存储在 CPU 寄存器而不是内存中的局部变量，一般用于存储使用频率高的变量。
+* `register` 类型，存储在 CPU 寄存器而不是内存中的局部变量，用于存储使用频率高的变量，一般编译器会自动将使用频繁的变量存储至寄存器。
   
   > 要注意的是由于机器字长的限制，只推荐将一些存储位数少的类型声明为 register 类型，如 char、short、int。
 
@@ -120,8 +120,8 @@ auto int b;
  * 1.(store_type) data_type indentifier = value;
  * 2.(store_type) data_type indentifier(value);
  */
- auto int c = 1；
- auto int d(2);
+int c = 2；
+static int d(2);
 ```
 
 常量的定义：
@@ -137,7 +137,7 @@ auto int b;
  * 2.使用 const
  * const data_type identifier = value;
  */
- const int WIDTH = 50;
+const int WIDTH = 50;
 ```
 
 ## 运算符和表达式
@@ -208,7 +208,7 @@ C 语言是需要编译的语言，程序中函数在被调用之前必须声明
  * (extern) return_type func_identifier(parameter_list);
  * 函数在声明时候参数列表可以只写数据类型
  */
- int Add(int);
+int Add(int);
 
 
 /*
@@ -240,13 +240,13 @@ int Add(int a) {
  * 数组的声明
  * data_type identifier[array_length];
  */
- int a[10];
+int a[10];
  
  /*
   * 数组的初始化
   * data_type identifier[] = {value_list};
   */
-  int b[5] = {1, 2, 3, 4, 5};
+int b[5] = {1, 2, 3, 4, 5};
 ```
 
 ### 多维数组
@@ -299,12 +299,15 @@ enum week {
  * struct identifier {
  *     member_list
  * };
+ * 结构体变量的声明
+ * struct struct_identifier var_identifier;
  */
 struct Students {
     char sex;
     int age;
     char name[10];
 };
+struct Students Allen;
 
 /*
  * 也可以不定义结构体标识符的直接定义结构体变量
