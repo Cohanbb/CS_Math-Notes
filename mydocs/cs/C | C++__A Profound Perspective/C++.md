@@ -11,6 +11,7 @@ inline 函数
 ```cpp
 
 ```
+## new & delete
 
 ## 新引入的数据类型
 
@@ -66,8 +67,6 @@ class Student {
 ## 多态
 
 ## 运算符重载
-
-## new & delete
 
 ## IO 类
 
