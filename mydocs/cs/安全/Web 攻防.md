@@ -32,19 +32,6 @@ Session 和 Cookie
 
 参考：[PHP]()  
 
-## 基于搜索引擎的信息收集
-
-### Google
-
-### Zoomeye
-
-### Shodan
-
-## 端口扫描与漏洞分析
-
-### Nmap
-
-### Burp Suite
 
 ## SQL 注入 
 
