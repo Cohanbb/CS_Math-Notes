@@ -1,5 +1,37 @@
 # Web 攻击与防御
 
+## HTTP 和 Web 基础
+
+[计算机网络_应用层]()
+
+### Web
+
+万维网（World Wide Web, WWW）简称 Web，是使用超文本传输协议（HTTP）传输网站页面和资源的一种网络应用层表现形式。  
+
+Web 的基本结构可以简化为：
+
+Web 浏览器 $\longleftrightarrow$ Web 服务器 $\longleftrightarrow$ 数据库服务器
+
+* 常见的 Web 浏览器：Google Chrome、Mozilla Firefox、MicroSoft Edge、Opera 等。
+* 提供 Web 服务的应用：Apache HTTP Server、Apache Tomcat、Nginx、IIS 等。
+* 提供数据库服务的应用：Oracle、MySQL、Access、Redis、MongoDB、SQLite 等。
+
+### HTTP 协议
+
+超文本传输协议
+
+get 和 post     
+
+Session 和 Cookie
+
+### HTML 与 CSS 基础
+
+参考：[HTML 与 CSS]()
+
+### PHP 基础
+
+参考：[PHP]()  
+
 ## 基于搜索引擎的信息收集
 
 ### Google

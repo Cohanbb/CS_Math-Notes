@@ -1,16 +1,17 @@
+<p align="center">
+    <font size="6"><strong>Hexo 博客搭建简单说明</strong></font>
+</p>
+
 **本文索引**
 
-- [Hexo 博客搭建简单说明](#hexo-博客搭建简单说明)
-  - [配置 Git、hexo](#配置-githexo)
-  - [GitHub Page 配置](#github-page-配置)
-  - [配置主题](#配置主题)
-  - [发布博客](#发布博客)
+- [安装 Git 和 hexo](#安装-git-和-hexo)
+- [GitHub Page 配置](#github-page-配置)
+- [配置主题](#配置主题)
+- [发布博客](#发布博客)
 
 <hr>
 
-# Hexo 博客搭建简单说明
-
-## 配置 Git、hexo
+# 安装 Git 和 hexo
 
 1. 安装 [node.js](https://nodejs.org/en/)。
 
@@ -42,7 +43,7 @@ $ git --version
 启动服务器，输入 `hexo server`  
 可在 http://localhost:4000/ 查看网站。
 
-## GitHub Page 配置
+# GitHub Page 配置
 
 1. 登录 [GitHub](https://github.com)，新建 repository，名字必须设为 **username.github.io**
 
@@ -65,7 +66,7 @@ $ git --version
 5. 然后在浏览器访问 https://username.github.io 即可进入博客主页。
  
  
-## 配置主题
+# 配置主题
 
 Hexo 博客默认主题为 landscape，若想修改主题，在 GitHub 上找到主题，克隆到 theme 文件夹下。本例为 next 主题。  
 
@@ -140,7 +141,7 @@ local_search:
 **插入图片**   
 需要将 \_config.yml 中的 `post_asset_folder` 设为 true，这样新建一个博客文件将生成一个同名的目录（文件夹），将图片放入该文件夹，在 markdown 文件中使用 `![](图片的名称)` 即可正常显示图片了。
 
-## 发布博客
+# 发布博客
 
 在根目录命令行输入：
 
