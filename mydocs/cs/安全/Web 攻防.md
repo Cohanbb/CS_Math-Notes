@@ -32,7 +32,6 @@ Session 和 Cookie
 
 参考：[PHP]()  
 
-
 ## SQL 注入 
 
 ### 基于报错注入
@@ -74,9 +73,9 @@ union select 1,(select group_concat(username) from security.users),(select group
 2. 使用白名单的服务器输入验证。
 3. 对查询语句的特殊字符进行转义，譬如 PHP 中使用函数 `mysqli _real_escape()` 函数。
 
-### 基于 HTTP header 与 Cookie 注入
+<!--### 基于 HTTP header 与 Cookie 注入
 
-### 盲注
+### 盲注-->
 
 ## XSS 漏洞
 
