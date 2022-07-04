@@ -68,7 +68,7 @@ class Student {
 
 ## 运算符重载
 
-## IO 类
+## IO 流
 
 ## String 类
 
