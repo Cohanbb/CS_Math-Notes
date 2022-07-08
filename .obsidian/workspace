@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "mydocs/cs/安全/系统安全.md",
+            "file": "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mydocs/cs/安全/系统安全.md"
+                "file": "mydocs/cs/C | C++__A Profound Perspective/Pure C.md"
               }
             }
           }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "3bfa751b8c4fea9a",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mydocs/cs/安全/系统安全.md",
+                "file": "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,15 +105,15 @@
   },
   "active": "48dd3f2bc097cfc5",
   "lastOpenFiles": [
-    "mydocs/cs/安全/系统安全.md",
+    "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
     "mydocs/cs/安全/网络安全.md",
-    "mydocs/cs/Android__A Swift Scanning.md",
     "mydocs/cs/安全/浅析 Crypto.md",
-    "mydocs/cs/安全/逆向工程.md",
     "mydocs/cs/安全/Web 攻防.md",
+    "mydocs/cs/安全/系统安全.md",
+    "mydocs/cs/安全/逆向工程.md",
+    "mydocs/cs/Android__A Swift Scanning.md",
     "mydocs/cs/安全/image/Pasted image 20220701151918.png",
     "mydocs/cs/安全/image/Pasted image 20220701151739.png",
-    "mydocs/cs/安全/image/Pasted image 20220701151850.png",
-    "mydocs/cs/安全/image/Pasted image 20220701151403.png"
+    "mydocs/cs/安全/image/Pasted image 20220701151850.png"
   ]
 }
