@@ -138,9 +138,7 @@ float c = (float)(3 / 2); // c 的值为 1
 
 一些问题：
 
-存储位数低的类型赋值给存储位数高的类型，会进行自动类型转换。
-  
-但由整数（int、long）转换为单精度浮点型有时候会出现问题：
+由整数（int、long）转换为单精度浮点型有时候会出现问题：
 
 ```c
 int a = 16777217; // 2 的 24 次方加 1
@@ -192,6 +190,13 @@ auto int b;
 int c = 2；
 static int d(2);
 ```
+
+> identifier 标识符，其必须满足：
+> * 其中只能使用字母、数字和下划线
+> * 第一个字符不能是数字
+> * C 语言保留的关键字不能用作标识符
+> * 以下划线开头的变量多用于表示标准库中的变量，尽量不要在程序中使用
+> * 以双下划线或下划线加大写字母开头的变量名多用于表示编译器中的变量，尽量不要在程序中使用
 
 常量的定义：
 
@@ -279,7 +284,6 @@ C 语言是需要编译的语言，程序中函数在被调用之前必须声明
  */
 int Add(int);
 
-
 /*
  * 函数的定义：
  * return_type func_identifier (parameter_list) {
@@ -311,20 +315,31 @@ int Add(int a) {
 ```c
 /*
  * 数组的声明
- * data_type identifier[array_length];
+ * data_type identifier[length];
+ * length 代表数组的长度即元素个数
  */
 int a[10];
  
  /*
   * 数组的初始化
-  * data_type identifier[] = {value_list};
+  * data_type identifier[length] = {value_list};
+  * length 可以省去
   */
-int b[5] = {1, 2, 3, 4, 5};
+int b1[5] = {1, 2, 3, 4, 5}; // {1, 2, 3, 4, 5}
+int b2[] = {1, 2, 3, 4, 5}; // {1, 2, 3, 4, 5}
+int b3[5] = {1, 2, 3, 4}; // {1, 2, 3, 4, unknown}
+int b4[] = {1, 2, 3, 4}; // {1, 2, 3 ,4}
 ```
 
 ### 多维数组
+ 
+```c
+/*
+ * 
 
-### C_Style 字符串
+```
+
+### C-风格字符串
 
 ## 指针
 

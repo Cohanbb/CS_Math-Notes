@@ -10,9 +10,9 @@ inline 函数
 
 ### 新增基本数据类型
 
-1. 布尔数据类型
+1. bool 型
 
-布尔-bool 类型，用来表示 `true` 或 `false`，占一个字节。
+ bool 型即布尔数据类型，用来表示 `true` 或 `false`，占一个字节。
 
 bool 型转 int 型，`true` 转化为 1，`false` 转化为 0。
 
