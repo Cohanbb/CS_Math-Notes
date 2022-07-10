@@ -29,48 +29,17 @@ C 语言编译执行的过程：
 
 ## 预处理
 
+预处理包括：
 
-### 文件包含
+* 预处理指令：`#define`、`#include` 等
+* 预处理运算符：`#`、`##` 等
+* 预定义宏：
 
-`#include` 可以使一个文件的全部内容都包含（即复制）到本文件中，有两种形式：
-
-```c
-#include <file> // 使用尖括号
-#include "(path)file" // 使用双引号
-```
-
-区别在于，使用尖括号时编译器会到 C 标准库中寻找要包含的文件。使用双引号时，编译器先在当前目录（或指定目录）下寻找要包含的文件，如果寻找不到再到 C 标准库中寻找。
-
-如果要包含 C 标准库中的文件，则使用尖括号；如果要包含其他位置的文件，则使用双引号。
-
-Demo：两个文件 test1.c 和 test2.c 如下：
-```c
-/* test1.c */
-int main() {
-    int a = 1;
-}
-
-/* test2.c */
-#include "test1.c"
-```
-使用 GCC 进行预处理 `gcc -E test2.c -o test2.i`，查看 test2.i 文件：
-
-```bash
-# 1 "test2.c"
-# 1 "<built-in>"
-# 1 "<command-line>"
-# 31 "<command-line>"
-# 1 "/usr/include/stdc-predef.h" 1 3 4
-# 32 "<command-line>" 2
-# 1 "test2.c"
-# 1 "test1.c" 1
-int main() {
-    int a = 1;
-}
-# 1 "test2.c" 2
-```
-
-可见将 test1.c 的内容完全复制到了 test2.c。
+  * `__LINE__`：当前编译行的行号
+  * `__FILE__`：当前编译源程序的文件名
+  * `__DATE__`：当前编译源程序的创建日期
+  * `__TIME__`：当前编译源程序的创建时间
+  * `__STDC__`：判断编译器是否为标准 C
 
 ### 宏定义
 
@@ -88,7 +57,6 @@ int main() {
 #define PRINT printf("helloworld!\n") // PRINT 会被替换为后面的语句
 #define HELLO "hello\
 world" // 可以使用 \ 连接下一行
-
 ```
 
 `#define` 与 `typedef` 的区别：前者是简单的文本替换，后者则代表了一种数据类型。
@@ -120,7 +88,7 @@ ADD(1,2); // 预处理阶段会被替换为 ((1)+(2))
 #define SUM(X,Y) printf(#X"+"#Y"=%d\n", ((X)+(Y))) // # 把参数转换为字符串
 SUM(1,2); // 将会替换为 printf("1""+""2""=%d\n", ((1)+(2)))，即输出 1+2=3
 
-#define LINK(X,Y) (X##Y) // ## 用于连接两个字符串
+#define LINK(X,Y) (X##Y) // ## 用于连接两个标记
 LINK(hello,world) // 连接为 helloworld
 
 /* 宏可以带有可变参数，用 ... 表示，__VA_ARGS__ 在预处理时被实际的参数替换 */
@@ -128,6 +96,8 @@ LINK(hello,world) // 连接为 helloworld
 PRINT("%d","1");  // printf("%d""\n","1");
 PRINT("helloword!"); // printf("helloword!""\n");
 ```
+
+上面的代码中包含一些预处理运算符，`\` 是行连接运算符，`#` 是字符串化运算符，`##` 是标记连接运算符，除此之外还有 `#@` 是字符化运算符。
 
 注意：
 
@@ -155,38 +125,155 @@ int main() {
 
 所得的程序并非期望中的结果，因为出现了运算符优先级的问题，所以最好在参数左右以及整个字符串的左右加上括号，变成 `#define MUL(X,Y) ((X)*(Y))`。
 
-为什么要有宏定义？
+`#undef` 用于撤销之前定义过的宏，也就是说宏的生命周期从 `#define` 开始到 `#undef` 结束。
 
+为什么要使用宏定义？
 
 ### 条件编译
 
-1. `#if #elif #else`
+1. `#if` `#else` `#elif` `#else`
 
-`#if` 的作用是，如果 `#if` 后的参数表达式为真，则编译 `#if` 和 `#endif` 之间的程序段，否则跳过该程序段。
+与 C 语言中的 `if-else if-else` 类似，根据满足的条件选择编译的代码片段。
 
 ```c
-#if
-
+#if condition
+    statement
+#elif condition
+    statement
+/*
+ * ......
+ */
+#else 
+    statement
 #endif
 ```
 
-`#else` 的作用
+2. `#ifdef` `#ifndef`
 
-2. `#ifdef` 和 `#ifndef`
+`#ifdef` 用于判断某个宏是否被定义，`#ifndef` 则相反，判断某个宏是否未被定义。
 
 ```c
-#ifdef
-
-#eldef
-
+#ifdef macro_identifier
+    statement
+#elif condition
+    statement
+/*
+ * ......
+ */
+#else
+    statement
 #endif
 ```
 
-3. `#undef` 用于撤销之前定义过的宏。
+3. `#pragma` 的作用是设定编译器状态，或指定编译器完成一些特殊的行为。
 
-4. `#line`
+可提供的编译器指令很多，其中常用的有：
 
-5. `#pragma` 
+```c
+#pragma once // 保证文件只被编译一次
+#pragma message(message) // message 会在编译输出窗口显示
+#pragma code_seg(["section-name"][""]) // 设置程序中函数代码存放的代码段
+```
+
+4. `#error` 的作用是在编译程序时只要遇到 `#error` 就会生成一个错误的消息，并停止编译。
+
+```c
+#error message // 将显示错误 message 并停止编译
+```
+
+同理 `#warning` 的作用是生成一个警告消息，但能够继续编译。
+
+```c
+#warning message // 将显示警告 message 并继续编译
+```
+
+5. `#line` 的作用是改变 `__LINE__` 和 `__FILE__` 的内容，前者存放正在编译行的行号，后者存放正在编译的文件的文件名。
+
+Demo：
+
+```c
+/*
+ * #line line "file"
+ */
+#include <stdio.h>
+#line 100 "test.c"
+
+int main() {
+    printf("%s: %d", __FILE__, __LINE__);
+}
+```
+
+将会输出：test.c: 102
+
+### 文件包含
+
+`#include` 可以使一个文件的全部内容都包含（即复制）到本文件中，有两种形式：
+
+```c
+#include <file> // 使用尖括号包含 file
+#include "(path)file" // 使用双引号包含 file
+```
+
+区别在于，使用尖括号时编译器会到 C 标准库中寻找要包含的文件。使用双引号时，编译器先在当前目录（或指定目录）下寻找要包含的文件，如果寻找不到再到 C 标准库中寻找。
+
+如果要包含 C 标准库中的文件，则使用尖括号；如果要包含其他位置的文件，则使用双引号。
+
+Demo：两个文件 test1.c 和 test2.c 如下：
+
+```c
+/* test1.c */
+int main() {
+    int a = 1;
+}
+
+/* test2.c */
+#include "test1.c"
+```
+使用 GCC 进行预处理 `gcc -E test2.c -o test2.i`，查看 test2.i 文件：
+
+```bash
+# 1 "test2.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "test2.c"
+# 1 "test1.c" 1
+int main() {
+    int a = 1;
+}
+# 1 "test2.c" 2
+```
+
+可见将 test1.c 的内容完全复制到了 test2.c。
+
+当文件嵌套包含时会出现问题，譬如:
+
+```mermaid
+graph TB
+A[test1.c] --> |#include| B[test2.h] --> |#include| C[file.h]
+A --> |#include| D[test3.c] --> |#include| C
+```
+
+由此以来会有两份 file.h 的内容被拷贝到 test1.c 中，如果 file.h 中存在宏或全局变量，则会导致重复定义。
+
+为解决这种情况，可以在每个文件开头写入：
+
+```c
+#ifndef __TEST_H__ // 假设该文件为 test.h
+#define __TEST_H__
+/*
+ * 文件的内容
+ */
+#endif
+```
+
+或者在文件开头写入：
+
+```c
+#pragma once // 保证文件值被编译一次
+```
 
 ## 基本数据类型
 
@@ -402,53 +489,57 @@ printf("%f\n", b); // 将会输出 16777216.00000
 
 ```c
 /* if-else 型 */
-if (/* condition1 */) {
-    /* operation */
-} else if (/* condition2 */) {
-    /* operation */
-} else {
-    /* operation */
+if (condition1) {
+    statement
+} else if (condition2) {
+    statement
+} 
+  /*
+   * ......
+   */ 
+  else {
+    statement
 }
 
 /* switch-case 型 */
-switch (/* identifier or expression */) {
-    case /* value */:
-        /* operation */
-    case /* value */:  
-        /* operation */
+switch (identifier or expression) {
+    case value1:
+        statement
+    case value2:  
+        statement
     /*
      * ......
      */
     break;
     default:
-        /* operation */
+        statement
 }
 ```
 
 除此之外还可以使用三目运算符 `?:` 来表示选择结构：
 
 ```c
-/* condition */ ? /* operation1 */ : /* operation2 */;
+condition ? statement1 : statement2;
 ```
 
-若 condition 为真，则执行 operation1，否则执行 operation2。
+若 condition 为真，则执行 statement1，否则执行 statement2。
 
 ### 循环结构
 
 ```c
 /* while 型 */
-while (/* condition */) {
-    /* operation */
+while (condition) {
+    statement
 }
 
 /* do-while 型 */
 do {
-    /* operation */
-} while (/* condition */)
+    statement
+} while (condition)
 
 /* for 型 */
-for (/* init_expression */; /* condition */; /* end_operation */) {
-    /* mid_operation */
+for (initializing; condition; addition) {
+    statement
 }
 ```
 
@@ -467,7 +558,7 @@ int Add(int);
 /*
  * 函数的定义：
  * return_type func_identifier (parameter_list) {
- *     operation
+ *     statement
  * }
  */
 int Add(int a) {
@@ -488,13 +579,19 @@ int Add(int a) {
 
 ### 函数调用
 
+main 函数是 C 语言程序的入口函数，它的完整形式为：
+
+```c
+int main(int argc, int argv[])
+```
+
 ## 数组
 
 ### 一维数组
 
 ```c
 /*
- * 数组的声明
+ * 一维数组的声明
  * data_type identifier[length];
  * length 代表数组的长度即元素个数
  */
@@ -524,8 +621,9 @@ c[5] = {1, 2, 3, 4, 5}; // Invalid
  
 ```c
 /*
- * 
-
+ * 多维数组的声明
+ * data_type identifier[length1][length2];
+ */
 ```
 
 ### C-风格字符串
@@ -615,12 +713,21 @@ union
 
 ## 标准 I/O
 
-什么是标准 I/O？
+什么是标准 I/O？什么是文件 I/O？
 
 > 1
 
+### printf
+
+### fprintf
+
+###
 
 ## 内存管理
+
+### 内存组织方式
+
+### 动态内存管理
 
 ## C 标准库
 

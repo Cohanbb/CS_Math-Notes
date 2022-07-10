@@ -299,26 +299,30 @@ PHP 中的选择语句与 C 语言完全相同，使用 `if-else` 语句或 `swi
 ```php
 <?php
     /* if-else 语句 */
-    if (/* condition1 */) {
-        /* operation */
-    } else if (/* condition2 */) {
-        /* operation */
-    } else {
-        /* operation */
+    if (/condition1) {
+        statement
+    } else if (condition2) {
+        statement
+    } 
+      /*
+       * ......
+       */ 
+      else {
+        statement
     }
 
     /* switch-case 语句 */
-    switch (/* identifier or expression */) {
-        case /* value1 */: 
-            /* operation */
-        case /* value2*/: 
-            /* operation */
+    switch (identifier or expression) {
+        case value1: 
+            statement
+        case value2: 
+            statement
         /* 
          * ...... 
          */
         break;
         default:
-            /* operation */
+            statement
     }
 ?>
 ```
@@ -331,18 +335,18 @@ PHP 中的循环语句在 C 语言提供的 `while`、`do while`、`for` 的基�
 ```php
 <?php
     /* while 型 */
-    while (/* condition */) {
-        /* operation */
+    while (condition) {
+        statement
     }
 
     /* do-while 型 */
     do {
-        /* operation */
-    } while (/* condition */)
+        statement
+    } while (condition)
 
     /* for 型 */
-    for (/* initializing */; /* condition */; /* addition */) {
-        /* operation */
+    for (initializing; condition; addition) {
+        statement
     }
 
     /* foreach 型用于遍历数组 */
@@ -362,7 +366,7 @@ PHP 是脚本语言，直接由 PHP 解释器解释执行，不需要进行编�
 ```php
 <?php
     function function_name(parameter_list) {
-        /* operation */
+        statement
         return ... ; // 返回值    
     }
 ?>
@@ -408,7 +412,7 @@ $obj -> fun(1);
 
 /* 继承 */
 class child_class extends php_class {
-    /* 代码 */
+    statement
 }
 
 /* 接口 */
@@ -420,7 +424,7 @@ interface A {
 // 实现接口
 class a implements A {
     public function fun(parameter_list) {
-        /* operation */
+        statement
     } 
 }
 
@@ -433,7 +437,7 @@ abstract class B {
 
 class b extends B {
     protected function fun1(parameter_list) {
-        /* operation */
+        statement
     }
 }
 ?>
