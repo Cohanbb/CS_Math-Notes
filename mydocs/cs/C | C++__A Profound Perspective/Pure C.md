@@ -54,7 +54,7 @@ C 语言编译执行的过程：
  * #define macro string
  */
 #define PI 3.14159 // 程序中的 PI 会被替换成 3.14159
-#define PRINT printf("helloworld!\n") // PRINT 会被替换为后面的语句
+#define PRINT fprintf(stdout, "helloworld!\n") // PRINT 会被替换为后面的语句
 #define HELLO "hello\
 world" // 可以使用 \ 连接下一行
 ```
@@ -92,9 +92,9 @@ SUM(1,2); // 将会替换为 printf("1""+""2""=%d\n", ((1)+(2)))，即输出 1+2
 LINK(hello,world) // 连接为 helloworld
 
 /* 宏可以带有可变参数，用 ... 表示，__VA_ARGS__ 在预处理时被实际的参数替换 */
-#define PRINT(fmt,...) printf(fmt"\n", ##__VA_ARGS__)
-PRINT("%d","1");  // printf("%d""\n","1");
-PRINT("helloword!"); // printf("helloword!""\n");
+#define PRINT(fmt,...) fprintf(stdout, fmt"\n", ##__VA_ARGS__)
+PRINT("%d","1");  // fprintf(stdout, "%d""\n","1");
+PRINT("helloword!"); // fprintf(stdout, "helloword!""\n");
 ```
 
 上面的代码中包含一些预处理运算符，`\` 是行连接运算符，`#` 是字符串化运算符，`##` 是标记连接运算符，除此之外还有 `#@` 是字符化运算符。
@@ -282,7 +282,7 @@ C 语言的基本数据类型分为两大类：
 * 以**整数**形式存储的数据类型：
 
   * 字符型 char、整数型 int、短整数型 short int（简称 short）、长整数型 long int（简称 long）
-  * 无符号字符型 unsigned char、无符号短整数型 unsigned short、无符号整数型 unsigned int、无符号长整数型 unsigned long。
+  * 无符号字符型 unsigned char、无符号短整数型 short unsigned int、无符号整数型 unsigned int、无符号长整数型 long unsigned int。
 
 * 以**浮点数**形式存储的数据类型：
 
@@ -354,7 +354,9 @@ e2 = 97; // 以 ASCII 码表示字符 a
 "HelloWorld" // 双引号表示字符串，字符串 HelloWorld，所有字符串都以 '\0' 结尾
 ```
 
-[ASCII 码表](https://www.runoob.com/w3cnote/ascii.html)
+ASCII 码表[^1]
+
+
 
 转义字符:
 
@@ -375,7 +377,7 @@ e2 = 97; // 以 ASCII 码表示字符 a
 |\\ddd|八进制数所代表的任意字符|1～3 位八进制|
 |\\xhh|十六进制所代表的任意字符|1~2 位十六进制|
 
-2. 变量
+1. 变量
 
 * 变量的作用域：变量可以被使用的范围，如果在外部定义，则作用域为全局，如果在局部代码块内定义，则作用域为块作用域。
 
@@ -415,7 +417,7 @@ static int d(2);
 > identifier 标识符，其必须满足：
 > * 其中只能使用字母、数字和下划线
 > * 第一个字符不能是数字
-> * C 语言保留的关键字不能用作标识符
+> * C 语言保留的关键字[^2]不能用作标识符
 > * 以下划线开头的变量多用于表示标准库中的变量，尽量不要在程序中使用
 > * 以双下划线或下划线加大写字母开头的变量名多用于表示编译器中的变量，尽量不要在程序中使用
 
@@ -477,11 +479,107 @@ printf("%f\n", b); // 将会输出 16777216.00000
 存储位数高的类型转换为存储位数低的类型，可能会出错：
 
 * double 型赋值给 float 型，精度下降，值可能会超出取值范围。 
-* 浮点数赋值给整数型，只保留整数部分，值可能超出取值范围。
+* 浮点数赋值给 int 型，只保留整数部分，值可能超出取值范围。
 * long 型赋值给 int 或 short 型，值可能超出取值范围，通常只复制右边的字节。
 
 
 ## 运算符和表达式
+
+### 运算符
+
+运算符根据操作数的数量分为单目运算符、双目运算符和三目运算符。
+
+1. 算术运算符
+
+|运算符|作用|
+|-|-|
+|+|（单目）正值|
+|-|（单目）负值|
+|+|两个操作数相加|
+|-|前一个操作数减去后二个操作数|
+|*|两个操作数相乘|
+|/|前一个操作数除以后二个操作数|
+|%|后一个操作数除前一个操作数的余数|
+
+2. 关系运算符
+
+|运算符|作用|
+|-|-|
+|==|等于|
+|!=|不等于|
+|<|小于|
+|<=|小于等于|
+|>|大于|
+|>=|大于等于|
+
+3. 逻辑运算符
+
+|运算符|作用|
+|-|-|
+|!|逻辑非|
+|&&|逻辑与|
+|\|\||逻辑或|
+
+4. 位运算符
+
+|运算符|作用|
+|-|-|
+|~|（单目）位求反|
+|<<|位左移|
+|>>|位右移|
+|&|位与|
+|\||位或|
+|^|位异或|
+
+5. MISC
+
+`=` 赋值运算符 
+
+`++` 自增运算符，值加 1，`--` 自减运算符，值减 1。这两个运算符前置和后置会带来不同的效果，前置会直接将操作数的值加或减 1，后置会先将操作数保留一个副本然后再让操作数加或减 1，使用这个副本参与表达式中的其他运算。
+
+Demo：
+
+```c
+int i = 1, j = 1;
+int k1 = ++i; // k1 为 2，i 为 2
+int k2 = j++; // k2 为 1，j 为 2
+```
+
+> 建议：非必要不使用后置的自增或自减运算符，因为前置不会产生不必要的工作。
+
+`sizeof` 运算符返回一个表达式或者类型所占的字节数，返回的类型是 long unsigned int 类型。
+
+```c
+/*
+ * sizeof(type)
+ * sizeof expression
+ */
+int a;
+printf("%ld\n", sizeof(int)); // 输出 4
+printf("%ld\n", sizeof a); // 输出 4
+printf("%ld\n", sizeof(sizeof a)); // 输出 8，因为是 long unsigned int 型
+```
+
+逗号运算符，连接两个表达式，先计算左边的表达式再计算右边的表达式，但最终整个表达式的结果为右侧表达式的值。
+
+Demo：
+
+```c
+int i;
+printf("%d\n", (i = 1, i = 2, i = 3)); 
+```
+
+将输出 3，也就是最右边的表达式的值。
+
+C 语言为一的三目运算符 `?:`，条件运算符：
+
+```c
+condition ? statement1 : statement2;
+```
+
+### 优先级和结合性
+
+### 左值和右值
 
 ## 程序结构
 
@@ -541,48 +639,6 @@ do {
 for (initializing; condition; addition) {
     statement
 }
-```
-
-## 函数
-
-C 语言是需要编译的语言，程序中函数在被调用之前必须声明。
-
-```c
-/*
- * 函数的声明
- * (extern) return_type func_identifier(parameter_list);
- * 函数在声明时候参数列表可以只写数据类型
- */
-int Add(int);
-
-/*
- * 函数的定义：
- * return_type func_identifier (parameter_list) {
- *     statement
- * }
- */
-int Add(int a) {
-    return ++a;
-}
-```
-
-### 函数参数
-
-函数的参数列表中的参数叫做形式参数
-
-1. 一般变量作型参
-2. 指针作型参
-
-### 函数返回值
-
-返回值类型缺省，则默认为 int 型。
-
-### 函数调用
-
-main 函数是 C 语言程序的入口函数，它的完整形式为：
-
-```c
-int main(int argc, int argv[])
 ```
 
 ## 数组
@@ -711,17 +767,66 @@ struct {
 union 
 ```
 
+## 函数
+
+C 语言是需要编译的语言，程序中函数在被调用之前必须声明。
+
+```c
+/*
+ * 函数的声明
+ * (extern) return_type func_identifier(parameter_list);
+ * 函数在声明时候参数列表可以只写数据类型
+ */
+int Add(int);
+
+/*
+ * 函数的定义：
+ * return_type func_identifier (parameter_list) {
+ *     statement
+ * }
+ */
+int Add(int a) {
+    return ++a;
+}
+```
+
+### 函数参数
+
+函数的参数列表中的参数叫做形式参数
+
+1. 一般变量作型参
+2. 指针作型参
+
+### 函数返回值
+
+返回值类型缺省，则默认为 int 型。
+
+### 函数调用
+
+main 函数是 C 语言程序的入口函数，它的完整形式为：
+
+```c
+int main(int argc, int argv[])
+```
+
+函数调用栈帧
+
 ## 标准 I/O
 
 什么是标准 I/O？什么是文件 I/O？
 
 > 1
 
-### printf
 
-### fprintf
+### fopen & fclose
 
-###
+### fputc & fgetc
+
+### fputs & fgets
+
+### fprintf & fscanf
+
+### fread & fwrite
 
 ## 内存管理
 
@@ -729,5 +834,11 @@ union
 
 ### 动态内存管理
 
+### 缓冲区溢出
+
 ## C 标准库
 
+
+
+[^1]:ASCII 码表
+[^2]:C 保留关键字
