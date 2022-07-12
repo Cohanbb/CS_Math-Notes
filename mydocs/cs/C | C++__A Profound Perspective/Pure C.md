@@ -181,12 +181,6 @@ int main() {
 #error message // 将显示错误 message 并停止编译
 ```
 
-同理 `#warning` 的作用是生成一个警告消息，但能够继续编译。
-
-```c
-#warning message // 将显示警告 message 并继续编译
-```
-
 5. `#line` 的作用是改变 `__LINE__` 和 `__FILE__` 的内容，前者存放正在编译行的行号，后者存放正在编译的文件的文件名。
 
 Demo：
@@ -282,7 +276,7 @@ C 语言的基本数据类型分为两大类：
 * 以**整数**形式存储的数据类型：
 
   * 字符型 char、整数型 int、短整数型 short int（简称 short）、长整数型 long int（简称 long）
-  * 无符号字符型 unsigned char、无符号短整数型 short unsigned int、无符号整数型 unsigned int、无符号长整数型 long unsigned int。
+  * 无符号字符型 unsigned char、无符号短整数型 unsigned short、无符号整数型 unsigned int、无符号长整数型 unsigned long。
 
 * 以**浮点数**形式存储的数据类型：
 
@@ -674,7 +668,7 @@ c[5] = {1, 2, 3, 4, 5}; // Invalid
 只能对数组元素进行赋值，如
 
 ### 多维数组
- 
+
 ```c
 /*
  * 多维数组的声明
@@ -836,9 +830,9 @@ int main(int argc, int argv[])
 
 ### 缓冲区溢出
 
-## C 标准库
+## C89 标准库
 
-
+## C99
 
 [^1]:ASCII 码表
 [^2]:C 保留关键字
