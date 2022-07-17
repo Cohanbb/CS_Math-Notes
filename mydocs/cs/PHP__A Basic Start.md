@@ -8,7 +8,8 @@
 
 # 摘要
 
-PHP(Hypertext Preprocessor)超文本预处理器，一种开源的、常运行在服务器上的开源脚本语言，它跨平台、与几乎所有 Web 服务器兼容、与大量的数据库兼容。  
+PHP(Hypertext Preprocessor)超文本预处理器，一种开源的、一般运行在服务器上的开源脚本语言，具有跨平台性、与几乎所有 Web 服务器兼容、与大量的数据库兼容。  
+PHP 属于类 C 语言，解释器也使用 C 语言编写，大部分语法与 C 语言相通，如果有良好的 C 语言的基础，可以快速地入门 PHP。  
 PHP 文件可以包含 PHP 代码、HTML 和 JavaScript 代码，在服务端执行，与数据库进行交互后生成 HTML 文件通过 Web 服务器返回给浏览器。
 
 <hr>
@@ -64,7 +65,7 @@ PHP 文件可以包含 PHP 代码、HTML 和 JavaScript 代码，在服务端执
 
 ### PHP 数据类型
 
-与 C/C++、Java、C#、Go 这些强类型语言不同，PHP 是一种弱类型语言，PHP 有 8 种数据类型：
+与 C/C++、Java、C#、Go 甚至 Python 这些强类型语言不同，PHP 是一种弱类型语言，PHP 有 8 种数据类型：
 
 * Integer：整数型
 * Float：浮点数型
@@ -320,7 +321,7 @@ PHP 中的选择语句与 C 语言完全相同，使用 `if-else` 语句或 `swi
         /* 
          * ...... 
          */
-        break;
+        break; // 遇到 break 才会终止
         default:
             statement
     }
@@ -402,7 +403,7 @@ class php_class {
     function fun($par) {
         echo $par;   
     }
-}
+};
 
 /* 声明对象 */
 $obj = new php_class(1, 2);
@@ -413,33 +414,33 @@ $obj -> fun(1);
 /* 继承 */
 class child_class extends php_class {
     statement
-}
+};
 
 /* 接口 */
 // 声明接口
 interface A {
     public function fun(parameter_list);
-}
+};
 
 // 实现接口
 class a implements A {
     public function fun(parameter_list) {
         statement
     } 
-}
+};
 
 /* 抽象类 */
 // 定义抽象类
 abstract class B {
     abstract protected function fun1(parameter_list);
     public function fun2();
-}
+};
 
 class b extends B {
     protected function fun1(parameter_list) {
         statement
     }
-}
+};
 ?>
 ```
 

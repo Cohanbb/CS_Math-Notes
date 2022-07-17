@@ -246,7 +246,7 @@ int color = Color.parseColor("#00CCFF");
 </LinearLayout>
 ```
 
-![](media/16557256967517.jpg)
+![](image/16557256967517.jpg)
 
 
 ### 相对布局 RelativeLayout
@@ -306,7 +306,7 @@ int color = Color.parseColor("#00CCFF");
 -->
 ```
 
-![](media/16557263884508.jpg)
+![](image/16557263884508.jpg)
 
 
 ### 表格布局 TableLayout

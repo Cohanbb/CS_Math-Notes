@@ -642,17 +642,17 @@ break 和 continue 都能使程序跳过代码块中的后续代码。二者的�
 ```c
 /* break */
 while (condition) {
-	statement1;
-	break; // 将跳转到 statement3
-	statement2;
+    statement1;
+    break; // 将跳转到 statement3
+    statement2;
 }
 statement3;
 
 /* continue */
 while (condition) {
-	statement1;
-	continue; // 将跳转到 while 进行下一轮循环
-	statement2;
+    statement1;
+    continue; // 将跳转到 while 进行下一轮循环
+    statement2;
 }
 ```
 
@@ -666,34 +666,34 @@ Demo：
 
 ```c
 void f(int a[], int 4) {
-	char *result;
-	if (a[0] < 0) {
-		if (a[1] < 0) {
-			if (a[2] < 0) {
-				if (a[3] < 0) {
-					result = "valid\n";
-				} else {
-					result = "a[3] >= 0\n";
-				}
-			} else {
-				result = "a[2] >= 0\n";
-			}
-		} else {
-			result = "a[1] >= 0\n";
-		}
-	} else {
-		result = "a[0] >= 0\n";
-	}
-	return result;
+    char *result;
+    if (a[0] < 0) {
+        if (a[1] < 0) {
+            if (a[2] < 0) {
+                if (a[3] < 0) {
+                    result = "valid\n";
+                } else {
+                    result = "a[3] >= 0\n";
+                }
+            } else {
+                result = "a[2] >= 0\n";
+            }
+        } else {
+            result = "a[1] >= 0\n";
+        }
+    } else {
+        result = "a[0] >= 0\n";
+    }
+    return result;
 }
 
 /* 可改写为： */
 void f(int a[], int 4) {
-	if (a[0]) return "a[0] >= 0\n";
-	if (a[1]) return "a[1] >= 0\n";
-	if (a[2]) return "a[2] >= 0\n";
-	if (a[3]) return "a[3] >= 0\n";
-	return "valid\n";
+    if (a[0]) return "a[0] >= 0\n";
+    if (a[1]) return "a[1] >= 0\n";
+    if (a[2]) return "a[2] >= 0\n";
+    if (a[3]) return "a[3] >= 0\n";
+    return "valid\n";
 }
 ```
 
@@ -702,15 +702,15 @@ void f(int a[], int 4) {
 使用 goto 关键字将控制无条件转移至目标位置，
 
 ```c
-/ *
-  * goto label
-  * label 是跳转目标的标签
-  */
-	int n = 1;
+/*
+* goto label
+* label 是跳转目标的标签
+*/
+    int n = 1;
 label:;
-	int a[n];
-	if (n++ < 10)
-		goto label;
+    int a[n];
+    if (n++ < 10)
+        goto label;
 ```
 
 ## 复合数据类型
@@ -856,7 +856,7 @@ struct Student Allen;
  * } identifier;
  */
 struct {
-	int id;
+    int id;
     char sex;
     int age;
     char name[10];
@@ -912,10 +912,10 @@ union
 
 ```c
 typedef struct Student {
-	int age;
-	int id;
-	float heigtht;
-	float weight;
+    int age;
+    int id;
+    float heigtht;
+    float weight;
 } stu;
 
 // struct Student a;
