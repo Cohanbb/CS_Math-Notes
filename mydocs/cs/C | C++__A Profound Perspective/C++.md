@@ -113,10 +113,8 @@ C++11 中引入了 long long int（简称 long long）数据类型，规定该�
 C++11 允许声明一个变量或对象而不需要声明数据类型，只需要在前面声明 `auto`，并进行初始化，其类型会根据初始值被自动推导出来。
 
 ```cpp
-/*
- * auto identifier = value;
- * 根据 value 自动推导数据类型
- */
+// auto identifier = value;
+// 根据 value 自动推导数据类型
 auto a = 100; // a 为 int 型
 float b;
 auto c = b; // b 为 float 型
@@ -147,11 +145,9 @@ auto c = b; // c 被推导为 int 类型，而不是 int &
 由于 `auto` 功能的限制，因此 C++11 又引入了 `decltype` 机制。
 
 ```cpp
-/*
- * decltype(statement) identifier = value; 
- * 根据 statement 来设置数据类型
- * statement 可以是变量、常量、表达式、函数名
- */
+// decltype(statement) identifier = value; 
+// 根据 statement 来设置数据类型
+// statement 可以是变量、常量、表达式、函数名
 const int a = 1, &b = a, *c = &a;
 decltype(a) d = 1; // d 为 const int 型
 decltype(b) e = 1; // e 为 const int & 型
@@ -170,11 +166,9 @@ decltype(func) h = 1; // h 的类型为 func 返回值的类型
 C++11 引入了一种新的 `for` 循环，可以逐一迭代某个给定的范围（如数组）内的每一个元素。
 
 ```cpp
-/*
- * for (declare : range) {
- *     operation
- * }
- */
+// for (declare : range) {
+//     operation
+// }
 for (int i : {1, 2, 3, 4, 5}) {
     std::cout << i << std::endl;
 }
