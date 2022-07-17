@@ -348,9 +348,9 @@ e2 = 97; // 以 ASCII 码表示字符 a
 "HelloWorld" // 双引号表示字符串，字符串 HelloWorld，所有字符串都以 '\0' 结尾
 ```
 
-ASCII 码表[^1]
+ASCII 码表
 
-
+![](image/Pasted%20image%2020220718021209.png)
 
 转义字符:
 
@@ -371,7 +371,7 @@ ASCII 码表[^1]
 |\\ddd|八进制数所代表的任意字符|1～3 位八进制|
 |\\xhh|十六进制所代表的任意字符|1~2 位十六进制|
 
-1. 变量
+2. 变量
 
 * 变量的作用域：变量可以被使用的范围，如果在外部定义，则作用域为全局，如果在局部代码块内定义，则作用域为块作用域。
 
@@ -385,7 +385,7 @@ ASCII 码表[^1]
   
   > 要注意的是由于机器字长的限制，只推荐将一些存储位数少的类型声明为 register 类型，如 char、short、int。
 
-* `static` 类型，存储在内存中的静态存储区，如果修饰局部变量，则该局部变量变为静态局部变量，在整个程序的生命周期保持存在，不会因进出作用域而创建和销毁。如果修饰全局变量，则会将变量的作用域限制在文件内。
+* `static` 类型，全局变量的默认类型，存储在内存中的静态存储区，如果修饰局部变量，则该局部变量变为静态局部变量，在整个程序的生命周期保持存在，不会因进出作用域而创建和销毁。如果修饰全局变量，则会将变量的作用域限制在文件内。
 
 * `extern` 类型，可以理解为在其他文件中声明了一个全局变量或函数，要在本文件中使用这个全局变量或函数，一般用于多个文件共享一个全局变量或函数。
 
@@ -394,24 +394,23 @@ ASCII 码表[^1]
 ```c
 /*
  * 变量的声明：
- * (store_type) data_type indentifier;
+ * store_type data_type indentifier;
+ * store_type 默认为 auto 或 static
  */
 int a;
 auto int b;
 
 /*
  * 变量的初始化：
- * 1.(store_type) data_type indentifier = value;
- * 2.(store_type) data_type indentifier(value);
+ * store_type data_type indentifier = value;
  */
-int c = 2；
-static int d(2);
+static int c = 2；
 ```
 
 > identifier 标识符，其必须满足：
 > * 其中只能使用字母、数字和下划线
 > * 第一个字符不能是数字
-> * C 语言保留的关键字[^2]不能用作标识符
+> * C 语言保留的关键字不能用作标识符
 > * 以下划线开头的变量多用于表示标准库中的变量，尽量不要在程序中使用
 > * 以双下划线或下划线加大写字母开头的变量名多用于表示编译器中的变量，尽量不要在程序中使用
 
@@ -445,11 +444,11 @@ int b = a; // b 的值为 1
 
 3. 强制类型转换
 
-在 C 语言中可以使用 `(类型)(变量或表达式)` 来进行强制类型转换：
+在 C 语言中可以使用 `(类型)变量或表达式` 来进行强制类型转换：
 
 ```c
 /*
- * (transform_type)(identifier or expression)
+ * (transform_type)identifier or expression
  */
 float a = 3 / 2; // a 的值为 1
 float b = (float)3 / 2; // b 的值为 1.5
@@ -476,8 +475,9 @@ printf("%f\n", b); // 将会输出 16777216.00000
 * 浮点数赋值给 int 型，只保留整数部分，值可能超出取值范围。
 * long 型赋值给 int 或 short 型，值可能超出取值范围，通常只复制右边的字节。
 
+## 表达式
 
-## 运算符和表达式
+### 左值和非左值
 
 ### 运算符
 
@@ -491,9 +491,9 @@ printf("%f\n", b); // 将会输出 16777216.00000
 |-|（单目）负值|
 |+|两个操作数相加|
 |-|前一个操作数减去后二个操作数|
-|*|两个操作数相乘|
-|/|前一个操作数除以后二个操作数|
-|%|后一个操作数除前一个操作数的余数|
+|\*|两个操作数相乘|
+|\/|前一个操作数除以后二个操作数|
+|\%|后一个操作数除前一个操作数的余数|
 
 2. 关系运算符
 
@@ -545,13 +545,13 @@ int k2 = j++; // k2 为 1，j 为 2
 
 ```c
 /*
- * sizeof(type)
+ * sizeof (data_type)
  * sizeof expression
  */
 int a;
-printf("%ld\n", sizeof(int)); // 输出 4
+printf("%ld\n", sizeof (int)); // 输出 4
 printf("%ld\n", sizeof a); // 输出 4
-printf("%ld\n", sizeof(sizeof a)); // 输出 8，因为是 long unsigned int 型
+printf("%ld\n", sizeof (sizeof a)); // 输出 8，因为是 long unsigned int 型
 ```
 
 逗号运算符，连接两个表达式，先计算左边的表达式再计算右边的表达式，但最终整个表达式的结果为右侧表达式的值。
@@ -573,9 +573,7 @@ condition ? statement1 : statement2;
 
 ### 优先级和结合性
 
-### 左值和右值
-
-## 程序结构
+## 语句结构
 
 ### 选择结构
 
@@ -602,7 +600,7 @@ switch (identifier or expression) {
     /*
      * ......
      */
-    break;
+    break; // 只有遇到 break 才会终止
     default:
         statement
 }
@@ -635,21 +633,103 @@ for (initializing; condition; addition) {
 }
 ```
 
-## 数组
+### 跳转语句
+
+1. break & continue
+
+break 和 continue 都能使程序跳过代码块中的后续代码。二者的区别是，如果在一个循环中使用 break 或 continue，break 的作用是跳过循环的剩余部分到达下一个语句，continue 的作用是跳过循环的剩余部分并进行下一轮循环。
+
+```c
+/* break */
+while (condition) {
+	statement1;
+	break; // 将跳转到 statement3
+	statement2;
+}
+statement3;
+
+/* continue */
+while (condition) {
+	statement1;
+	continue; // 将跳转到 while 进行下一轮循环
+	statement2;
+}
+```
+
+2. return
+
+使用 return 关键字可以结束当前执行的函数，并返回一个具体的值到调用该函数的位置。
+
+使用 return 语句可以用来规避 if-else 多层嵌套：
+
+Demo：
+
+```c
+void f(int a[], int 4) {
+	char *result;
+	if (a[0] < 0) {
+		if (a[1] < 0) {
+			if (a[2] < 0) {
+				if (a[3] < 0) {
+					result = "valid\n";
+				} else {
+					result = "a[3] >= 0\n";
+				}
+			} else {
+				result = "a[2] >= 0\n";
+			}
+		} else {
+			result = "a[1] >= 0\n";
+		}
+	} else {
+		result = "a[0] >= 0\n";
+	}
+	return result;
+}
+
+/* 可改写为： */
+void f(int a[], int 4) {
+	if (a[0]) return "a[0] >= 0\n";
+	if (a[1]) return "a[1] >= 0\n";
+	if (a[2]) return "a[2] >= 0\n";
+	if (a[3]) return "a[3] >= 0\n";
+	return "valid\n";
+}
+```
+
+3. goto
+
+使用 goto 关键字将控制无条件转移至目标位置，
+
+```c
+/ *
+  * goto label
+  * label 是跳转目标的标签
+  */
+	int n = 1;
+label:;
+	int a[n];
+	if (n++ < 10)
+		goto label;
+```
+
+## 复合数据类型
 
 ### 一维数组
+
+数组是一种复合数据类型，
 
 ```c
 /*
  * 一维数组的声明
- * data_type identifier[length];
+ * store_type data_type identifier[length];
  * length 代表数组的长度即元素个数
  */
 int a[10];
  
  /*
   * 数组的初始化
-  * data_type identifier[length] = {value_list};
+  * store_type data_type identifier[length] = {value_list};
   * length 可以省去
   */
 int b1[5] = {1, 2, 3, 4, 5}; // {1, 2, 3, 4, 5}
@@ -658,41 +738,73 @@ int b3[5] = {1, 2, 3, 4}; // {1, 2, 3, 4, 0} 未初始化的元素被设为 0
 int b4[] = {1, 2, 3, 4}; // {1, 2, 3 ,4}
 ```
 
-如果在声明数组时没有进行初始化，则后续无法再使用 `{}` 进行初始化，如：
+如果在声明数组时没有进行初始化，则后续无法再使用初始化列表进行初始化，如：
 
 ```c
 int c[5];
 c[5] = {1, 2, 3, 4, 5}; // Invalid
 ```
 
-只能对数组元素进行赋值，如
+也无法将一个数组名直接赋值给另一个，如：
+
+```c
+int d[3] = {1, 2, 3};
+int e[3];
+e = d; // Invalid
+```
+
+使用 `数组名[下标]` 的方式表达数组元素，下标 0 表示数组的第一个元素。
+
+```C
+int f[3] = {1, 2, 3};
+printf("%d %d %d\n", f[0], f[1], f[2]); // 1 2 3
+```
+
+数组名可以代表数组首元素的地址，即指向数组首地址的指针。
 
 ### 多维数组
+
+多维数组的声明和初始化：
 
 ```c
 /*
  * 多维数组的声明
- * data_type identifier[length1][length2];
+ * store_type data_type identifier[length1][length2];
  */
+int a[2][3] = {{1, 2, 3}, {4, 5, 6}};
 ```
+
+多维数组的本质是将数组作为元素的数组，上述的 `a[2][3]` 中，可认为数组 a 有两个元素，元素的类型是 `int[3]`。 
 
 ### C-风格字符串
 
-## 指针
+C-风格字符串指字符数组，也就是元素类型为 char 型的数组。
 
-C 语言中的空指针 `NULL`
+字符数组的定义和初始化，以下三种方式都对：
 
 ```c
-#define NULL ((void *)0)
+char str[] = {'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!'};
+char str[] = "hello world!";
+char str[] = {"hello world!"};
 ```
 
-C++ 中的空指针 `NULL`
+C 语言中字符串均以 `\0` 结尾，也就是说如果以字符串的赋值字符数组，那字符数组的最后一个元素一定是 `\0`。
 
-```cpp
-#define NULL 0
+```c
+char str[5] = {'1', '2', '3', '4', '5'}; // 正确
+char str2[5] = "12345"; // Error，因为最后一个元素是 \0 应该有 6 个元素
+
+char str[] = {'1', '2', '3', '4', '5'};
+char str2[] = "12345";
+printf("%ld\n", sizeof str); // 5
+printf("%ld\n", sizeof str2); // 6
 ```
 
-## 自定义数据类型
+C 语言中用于字符串操作的函数：
+
+1. strcpy
+2. strlen
+3. str
 
 ### 枚举类型
 
@@ -718,6 +830,8 @@ enum week {
 
 ### 结构体类型
 
+C 语言中没有 class 这一类型，但提供了 struct 类型以表示由多个成员组成的数据类型。
+
 ```c
 /* 
  * 结构体的定义：
@@ -727,12 +841,13 @@ enum week {
  * 结构体变量的声明
  * struct struct_identifier var_identifier;
  */
-struct Students {
+struct Student {
+    int id;
     char sex;
     int age;
     char name[10];
 };
-struct Students Allen;
+struct Student Allen;
 
 /*
  * 也可以不定义结构体标识符的直接定义结构体变量
@@ -741,10 +856,40 @@ struct Students Allen;
  * } identifier;
  */
 struct {
+	int id;
     char sex;
     int age;
     char name[10];
 } Allen, Bob;
+```
+
+结构体变量的初始化：
+
+```c
+struct Student A = {1, 'm', '20', "Allen"};
+struct Student B = A; // 同类型结构体变量可以直接赋值
+```
+
+访问结构体变量的成员：
+
+```c
+struct Student A;
+int a = A.age; // 可以使用 . 访问结构体便利的成员
+
+struct Student *p;
+int b = p->age; // 也可以使用结构体指针访问成员
+```
+
+当结构体当中含有长度未知的数组即柔性数组：
+
+```c
+struct s {
+    int a;
+    int b[]; // 柔性数组
+};
+
+struct s s1 = {1, {2, 3}}; // Invalid，因为 b 的长度未知
+struct s *s2 = malloc(sizeof (struct s) + (sizeof (int) * 5)); // 此时柔性数组为 b[5]
 ```
 
 ### 共用体类型
@@ -761,7 +906,41 @@ struct {
 union 
 ```
 
+### typedef
+
+`typedef` 关键字的作用是给复杂的数据类型起一个别名，可以在定义复杂的数据类型时使用：
+
+```c
+typedef struct Student {
+	int age;
+	int id;
+	float heigtht;
+	float weight;
+} stu;
+
+// struct Student a;
+stu a;
+```
+
+## 指针
+
+指针
+
+C 语言中的空指针 `NULL`
+
+```c
+#define NULL ((void *)0)
+```
+
+C++ 中的空指针 `NULL`
+
+```cpp
+#define NULL 0
+```
+
 ## 函数
+
+函数是 C 语言中重要的概念，C 程序执行时会在不同的函数之间跳转。
 
 C 语言是需要编译的语言，程序中函数在被调用之前必须声明。
 
@@ -769,7 +948,7 @@ C 语言是需要编译的语言，程序中函数在被调用之前必须声明
 /*
  * 函数的声明
  * (extern) return_type func_identifier(parameter_list);
- * 函数在声明时候参数列表可以只写数据类型
+ * 函数在声明时候参数列表可以只写数据类型，extern 表示引用其他文件的函数
  */
 int Add(int);
 
@@ -788,8 +967,10 @@ int Add(int a) {
 
 函数的参数列表中的参数叫做形式参数
 
-1. 一般变量作型参
-2. 指针作型参
+1. 值传递参数
+2. 地址传递参数
+
+可变参数函数
 
 ### 函数返回值
 
@@ -828,11 +1009,13 @@ int main(int argc, int argv[])
 
 ### 动态内存管理
 
+1. malloc
+2. free
+3. calloc
+4. realloc
+
 ### 缓冲区溢出
 
 ## C89 标准库
 
 ## C99
-
-[^1]:ASCII 码表
-[^2]:C 保留关键字
