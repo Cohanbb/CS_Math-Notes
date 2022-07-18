@@ -181,11 +181,14 @@
   中文开源项目，提供各种文档的中文翻译，respect！
 
 * [C/C++ Reference](https://en.cppreference.com/w/)
-* [GNU C 语言文档](https://www.gnu.org/software/libc/manual/)
-* [GNU C++ 文档](https://gcc.gnu.org/onlinedocs/libstdc++/)
+* [C++ Tutorial](https://m.cplusplus.com/doc/tutorial/)
+* [C++ Reference](https://m.cplusplus.com/reference/)
+* [GNU C 语言参考手册](https://www.gnu.org/software/gnu-c-manual/)
+* [GCC libc 手册](https://www.gnu.org/software/libc/manual/)
+* [GCC libstdc++ 手册](https://gcc.gnu.org/onlinedocs/libstdc++/)
 * [微软 C 语言文档](https://docs.microsoft.com/zh-cn/cpp/c-language/)
 * [微软 C++ 文档](https://docs.microsoft.com/zh-cn/cpp/cpp/)
-* [JavaSE 官方文档和 API](https://docs.oracle.com/en/java/javase/)
+* [Java SE 官方文档和 API](https://docs.oracle.com/en/java/javase/)
 * [Spring 官方文档](https://spring.io/)
 * [Spring 中文文档](https://docs.gitcode.net/spring/guide/)
 * [Go 语言官方文档](https://go.dev/doc/)
