@@ -86,7 +86,7 @@ $ git config --global user.email "your email"
 * 当执行 `git reset HEAD` 命令时，index 中的目录树会被重写，被 master 中提交信息的目录树所替换，但工作区不受影响。
 * 当执行 `git rm --cached <file>` 命令时，只从 index 中删除文件，工作区不受改变。
 * 当执行 `git checkout .` 或者 `git checkout -- <file>` 命令时，会用 index 中全部或指定的文件替换工作区的文件。这个操作非常危险，会清除工作区中未添加到 index 的改动。
-* 当执行 `git checkout HEAD .` 或者 `git checkout HEAD <file>` 命令时，会用 HEAD 指向 master 分支中全部或者部分文件替换 index 以及工作区的文件。这个文件也是极具危险性的，因为不仅会清空工作区中为提交的改动，也会清楚暂存区中未提交的改动。
+* 当执行 `git checkout HEAD .` 或者 `git checkout HEAD <file>` 命令时，会用 HEAD 指向 master 分支中全部或者部分文件替换 index 以及工作区的文件。这个操作也是极具危险性的，因为不仅会清空工作区中为提交的改动，也会清楚暂存区中未提交的改动。
 
 ## 深入理解 Git
 
@@ -319,11 +319,14 @@ git add <dir> #添加指定目录到缓存区
 
 git status #查看上次提交之后有无对文件进行再次的修改
 
-git diff <file> #显示缓存区和工作区文件的差异
+git diff <file> #显示暂存区和工作区文件的差异
 git diff --cached <file> #显示暂存区和上一次提交的差异
 
 git commit <file1> <file2> ... -m <message> #提交暂存区的文件到仓库区
 git commit -a #不需要 git add 直接提交
+
+git checkout -- <file> #将文件从暂存区恢复到工作区
+git checkout HEAD <file> #将文件从版本库恢复到暂存区和工作区
 
 git reset --mixed <HEAD> #重置暂存区与上一次提交的保持一致
 git reset --soft <HEAD> #退回到某个版本 
@@ -358,6 +361,7 @@ git branch <branchname> #创建分支
 git checkout <branchname> #切换分支
 git merge <branchname> #合并分支
 git branch -d  <branchname> #删除分支
+git branch -m <branchname> #分支重命名
 ```
 # GitHub
 

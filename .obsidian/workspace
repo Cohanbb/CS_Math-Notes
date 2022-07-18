@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "mydocs/cs/C | C++__A Profound Perspective/C.md",
+            "file": "mydocs/cs/效率/Git 教程.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mydocs/cs/C | C++__A Profound Perspective/C.md"
+                "file": "mydocs/cs/效率/Git 教程.md"
               }
             }
           }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3bfa751b8c4fea9a",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mydocs/cs/C | C++__A Profound Perspective/C.md",
+                "file": "mydocs/cs/效率/Git 教程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,8 +106,8 @@
   },
   "active": "48dd3f2bc097cfc5",
   "lastOpenFiles": [
-    "mydocs/cs/C | C++__A Profound Perspective/C++.md",
     "mydocs/cs/C | C++__A Profound Perspective/C.md",
+    "mydocs/cs/C | C++__A Profound Perspective/C++.md",
     "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
     "mydocs/cs/安全/网络安全.md",
     "mydocs/cs/安全/浅析 Crypto.md",
