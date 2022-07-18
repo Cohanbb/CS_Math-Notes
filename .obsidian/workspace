@@ -4,13 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "48dd3f2bc097cfc5",
+        "id": "6f0a2de2efc50029",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
             "file": "mydocs/cs/C | C++__A Profound Perspective/C.md",
-            "mode": "preview",
+            "mode": "source",
             "source": false
           }
         }
@@ -104,17 +104,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "48dd3f2bc097cfc5",
+  "active": "6f0a2de2efc50029",
   "lastOpenFiles": [
     "mydocs/cs/C | C++__A Profound Perspective/C++.md",
+    "mydocs/cs/C | C++__A Profound Perspective/C.md",
+    "mydocs/cs/PHP__A Basic Start.md",
+    "mydocs/cs/安全/逆向工程.md",
     "mydocs/cs/效率/Docker 教程.md",
     "mydocs/cs/效率/Git 教程.md",
-    "mydocs/cs/C | C++__A Profound Perspective/C.md",
     "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
     "mydocs/cs/安全/网络安全.md",
     "mydocs/cs/安全/浅析 Crypto.md",
-    "mydocs/cs/安全/Web 攻防.md",
-    "mydocs/cs/安全/系统安全.md",
-    "mydocs/cs/安全/逆向工程.md"
+    "mydocs/cs/安全/Web 攻防.md"
   ]
 }

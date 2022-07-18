@@ -300,7 +300,7 @@ PHP 中的选择语句与 C 语言完全相同，使用 `if-else` 语句或 `swi
 ```php
 <?php
     /* if-else 语句 */
-    if (/condition1) {
+    if (condition1) {
         statement
     } else if (condition2) {
         statement
@@ -313,7 +313,7 @@ PHP 中的选择语句与 C 语言完全相同，使用 `if-else` 语句或 `swi
     }
 
     /* switch-case 语句 */
-    switch (identifier or expression) {
+    switch (expression) {
         case value1: 
             statement
         case value2: 
@@ -366,7 +366,7 @@ PHP 是脚本语言，直接由 PHP 解释器解释执行，不需要进行编�
 
 ```php
 <?php
-    function function_name(parameter_list) {
+    function function_identifier(parameter_list) {
         statement
         return ... ; // 返回值    
     }
