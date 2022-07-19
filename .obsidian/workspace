@@ -10,7 +10,7 @@
           "type": "markdown",
           "state": {
             "file": "mydocs/cs/C | C++__A Profound Perspective/C.md",
-            "mode": "source",
+            "mode": "preview",
             "source": false
           }
         }
@@ -106,15 +106,15 @@
   },
   "active": "8df7b9c3b3a7f7ab",
   "lastOpenFiles": [
+    "mydocs/cs/数据结构/数据结构_绪论.md",
+    "mydocs/cs/从0开始入门数学建模.md",
+    "mydocs/cs/智能优化算法.md",
+    "mydocs/cs/HTML - CSS.md",
+    "mydocs/cs/安全/Web 攻防.md",
+    "mydocs/cs/安全/网络安全.md",
+    "mydocs/cs/C | C++__A Profound Perspective/C.md",
     "mydocs/cs/C | C++__A Profound Perspective/C++.md",
     "mydocs/cs/效率/awesome_web link.md",
-    "mydocs/cs/C | C++__A Profound Perspective/C.md",
-    "mydocs/cs/PHP__A Basic Start.md",
-    "mydocs/cs/安全/逆向工程.md",
-    "mydocs/cs/效率/Docker 教程.md",
-    "mydocs/cs/效率/Git 教程.md",
-    "mydocs/cs/C | C++__A Profound Perspective/Pure C.md",
-    "mydocs/cs/安全/网络安全.md",
-    "mydocs/cs/安全/浅析 Crypto.md"
+    "mydocs/cs/PHP__A Basic Start.md"
   ]
 }
