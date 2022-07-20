@@ -42,6 +42,12 @@ C 语言编译执行的过程：
 
 ### 基本数据类型
 
+C 语言中数据类型分为三大类：
+
+1. 对象类型：在内存中创建的具有完整定义的类型。
+2. 函数类型：所定义的函数均为函数类型。
+3. 不完全类型：`void` 型，未指定长度的数组、未定义内容的结构体和共用体。
+
 C 语言的基本数据类型分为两大类：
 
 * 以**整数**形式存储的数据类型：
@@ -675,10 +681,23 @@ int main() {
 >函数调用时需要压入参数并跳转到调用函数的栈帧，等函数执行完再返回调者的栈帧。这种转移操作要求在调用函数前要保存现场并记忆执行的地址，返回i后要恢复现场，并按原来保存地址继续执行。因此，函数调用要有一定的时间和空间方面的开销，将影响程序执行的效率。  
 >而宏在预处理时把代码展开，不会在程序执行时产生额外的空间和时间方面的开销，所以宏比函数更加高效。
 
-C99 中引入了内联函数，内联函数是一种特殊的函数，在
+C99 中引入了内联函数，内联函数是一种特殊的函数，在函数定义时加上 `inline` 用来表明是内联函数。内联函数在调用时直接把函数的代码拷贝到调用的位置，而不用进行栈帧的跳转和返回。
+
+
+```c
+inline sum(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int a = sum(1, 2); // int a = 1 + 2; 
+}
+```
 
 内联函数与宏定义的区别？
 
+1. 宏在预处理阶段被替换，内联函数在编译阶段被调用时展开。
+2. 内联函数是函数，可以检查参数的类型，且具有返回值。
 
 ### 条件编译
 
@@ -835,7 +854,23 @@ A --> |#include| D[test3.c] --> |#include| C
 
   如数组指针、指针的指针、结构体指针、枚举指针、共用体指针等。
 
-指针变量的值是其指向数据的内存地址，
+* `void` 型指针，可以自动转换成其他类型的指针，其他类型的指针也可以自动转换成 `void` 型指针。可用于传递未知类型的对象。
+
+* 空指针：
+
+C 语言中的空指针 `NULL`
+
+```c
+#define NULL ((void *)0)
+```
+
+C++ 中的空指针 `NULL`
+
+```cpp
+#define NULL 0
+```
+
+* 函数指针：指向函数的指针。具体可见[函数指针](#函数指针)。
 
 指针变量的声明和初始化：
 
@@ -852,24 +887,14 @@ int *p;
  */
 int a；
 int *p = &a;
-int *q = (int *)0x00001234;
-```
-
-空指针：
-
-C 语言中的空指针 `NULL`
-
-```c
-#define NULL ((void *)0)
-```
-
-C++ 中的空指针 `NULL`
-
-```cpp
-#define NULL 0
+int *q = (int *)0x555555551234; // 直接指定内存
 ```
 
 指针的算术法则：
+
+1. 指针加/减数字：`p + i` 表示指针所指向位置后移 `i` 个单位的位置，`p - i` 表示指针所指位置前移 `i` 个单位的位置。
+
+2. 指针减指针，得到两指针之间的元素个数。
 
 ### 一维数组
 
@@ -982,7 +1007,7 @@ int sum(int n, int a[n]) {
 
 VLA 虽然可以使用变量指定数组的长度，但其本质依然是静态数组，一旦创建其内存大小就无法改变。
 
-于此相比在 C 语言中更常用的方法是[动态创建数组](#动态内存分配)。
+于此相比在 C 语言中更常用的方法是[动态创建数组](#动态内存管理)。
 
 ### 多维数组
 
@@ -1084,16 +1109,29 @@ C 语言中用于字符串操作的函数：
 1. strcpy 字符串复制
 
 ```c
-char
+char * strcpy(char *, char *);
 ```
 
-2. strlen 字符串长度
-3. strcmp 字符串比较
-4. strcat 字符串连接
-5. strchr & strrchr 字符查找
-6. strstr 字符串查找
-7. strdup 
-8. strrev 字符串反转
+2. strlen 返回i字符串长度
+
+```c
+int strlen(char *);
+```
+
+4. strcmp 字符串比较
+
+```c
+int strlen(char *, char *);
+```
+
+6. strcat 字符串连接
+
+
+
+8. strchr & strrchr 字符查找
+9. strstr 字符串查找
+10. strdup 
+11. strrev 字符串反转
 
 ### 指针和数组
 
@@ -1112,12 +1150,9 @@ char *(*p)[3] = &array; // 数组指针
 
 上述代码可以编译通过，在 vscode 中调试：
 
+![](image/Pasted%20image%2020220720221241.png)
 
 可见 array 是一个数组，数组的元素是 `char *` 型，p 是一个指针，指向的内容是 `char (*)[3]` 类型。
-
-数组类型的本质
-
->The array subscript expression A[i] is defined as being identical to the expression (*((A)+(i))). This means that many uses of an array name are equivalent to a pointer expression. It also means that you cannot subscript an array having the register storage class.
 
 ### 枚举类型
 
@@ -1225,9 +1260,27 @@ struct s *s2 = malloc(sizeof (struct s) + (sizeof (int) * 5)); // 此时柔性�
 union 
 ```
 
-### 不完整数据类型
+### 不完全数据类型
 
-未完整定义的结构体或共同体称为不完整数据类型。
+`void` 型、未指定长度的数组、未定义内容的结构体和共同体被称为不完全数据类型。
+
+不完全数据类型有什么用？
+
+1. 应用于头文件中，不定义完整的数据类型，而是在源文件中定义，可以提高代码的灵活度。也可以实现抽象模型的封装，防止用户直接访问结构体成员，而是使用接口访问。
+2. 用在一些特殊场景：
+
+```c
+struct A;
+struct B;
+
+struct A {
+    struct B *p;
+}
+
+struct B {
+    struct A *p;
+}
+```
 
 ### const & volatile
 
@@ -1301,11 +1354,57 @@ int main(int argc, int argv[])
 
 函数调用栈帧
 
+### 函数指针
+
+```c
+/*
+ * 函数指针的声明：
+ * return_type (*pointer_identifier)(parameter_list);
+ */
+int (*p)(int, int);
+
+/*
+ * 函数指针的初始化：
+ * return_type (*pointer_identifier)(parameter_list) = function_identifier;
+ */
+int func(int, int);
+int (*p)(int, int) = func;
+int (*p)(int, int) = &func; // 这样也可以
+
+/*
+ * 函数指针的调用：
+ * p(parameter_list);
+ * (*p)(parameter_list);
+ */
+p(1, 2); // 直接通过函数指针调用
+(*p)(1, 2); // 通过函数指示符调用
+```
+
+Demo：
+
+```c
+int max(int x, int y) {
+    return x > y ? x : y; 
+}
+
+int main() {
+    int (*p)(int, int);
+    p = max;
+    int z = p(100, 50);
+    return 0;
+}
+```
+
+回调函数
+
+```c
+```
+
 ## 标准 I/O
 
 什么是标准 I/O？什么是文件 I/O？
 
-> 1
+标准 I/O 是  C 标准库中的 I/O 库函数，文件 I/O 指操作系统自身负责输入输出的系统调用。
 
 ### fopen & fclose
 
