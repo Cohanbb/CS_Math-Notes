@@ -1698,7 +1698,7 @@ des = "1234"
 
 ## 参考文献
 
-[1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)
-[2] Computer System: A Programmer Perspective
-[3] The GNU C Reference Manual
-[4] C++ Primer Plus
+[1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)  
+[2] Computer System: A Programmer Perspective  
+[3] The GNU C Reference Manual  
+[4] C++ Primer Plus  
