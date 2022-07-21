@@ -1,5 +1,5 @@
 <p align="center">
-    <font size="6"><strong>GoLang</strong></font>
+    <font size="6"><strong>Go</strong></font>
 </p>
 
 # 摘要
