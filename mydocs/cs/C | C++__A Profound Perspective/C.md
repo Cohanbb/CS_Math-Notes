@@ -1,18 +1,21 @@
 # C
 
+## 摘要
+
 C 语言是一个系统级的高级程序设计语言，是需要编译执行的静态语言，广泛应用于操作系统、驱动程序、嵌入式软件、系统级应用和游戏的开发，C 语言是最接近底层的高级语言。
 
 C 语言发展历程：
 
 * C 语言诞生于美国贝尔实验室，1989 年美国国家标准协会（ANSI）发布了第一个 C 语言标准，简称 C89 或 ANSI C。
-* 1990 年 ANSI C 标准被国际标准化组织（ISO）和国际电工委员会（IEC）采纳为国际标准。
+* 1990 年 ANSI C 标准被国际标准化组织（ISO）和国际电工委员会（IEC）采纳为国际标准，简称 C90。
+* 1994、1996 年 ISO 发布了对 C90 的勘误和补充，简称 C95。
 * 1999 年 ISO 与 IEC 采纳了重大修订的第二个的 C 语言标准，简称 C99。
 * 2011 年 ISO 与 IEC 采纳了第三个 C 语言标准，简称 C11。
 * 2018 年又采纳了最新的 C 语言标准，简称 C17 或 C 18。
 
 C89 是影响力最为深远、编译器支持度最好的 C 语言标准，而 C99 标准至今没有得到大部分编译器的完整支持，其中支持度最好的编译器是 GCC 和 Clang。
 
-本文的内容基于 C89 和部分 C99 标准。
+本文的内容基于 C89 和部分 C99 标准，所有代码均使用 GCC 编译。
 
 C 语言编译执行的过程：
 
@@ -82,26 +85,27 @@ C 语言的基本数据类型分为两大类：
 
 ### C99 新增数据类型
 
-1. 长长整数型 `long long int`（简称 long long）以及 `unsigned long long`。C99 规定 `long long` 的范围不小于 `long`，经测试在 64 位 GCC 中 `long long` 的存储位数为 8，与 `long` 相同。
+1. C95 补充了宽字符类型以及头文件 wchar_t.h，通过 `typedef unsigned int wchar_t` 实现，并不是一个基本数据类型。
+
+2. 长长整数型 `long long int`（简称 long long）以及 `unsigned long long`。C99 规定 `long long` 的范围不小于 `long`，经测试在 64 位 GCC 中 `long long` 的存储位数为 8，与 `long` 相同。
 
 ```c
 printf("%ld\n", sizeof (long long)); // 8
 printf("%ld\n", sizeof (long)); // 8
 ```
 
-2. C 语言没有布尔数据类型，C99 引入了 `_Bool` 类型，占 1 个字节，值为 1 或 0。且在新增头文件 stdbool.h 中定义了宏 `bool`、`true` 和 `false`。
+3. C 语言没有布尔数据类型，C99 引入了 `_Bool` 类型，占 1 个字节，值为 1 或 0，对应 true 或 false。且在新增头文件 stdbool.h 中定义了宏 `bool`、`true` 和 `false`。
 
 ```c
-#include <stdbool.h>
 _Bool a1 = 0;
 _Bool b2 = 1; // 只要赋值不为 0 即赋值为 1
-bool a2 = false; // bool 定义为 _Bool false 定义为 0
+
+#include <stdbool.h>
+bool a2 = false; // bool 定义为 _Bool，false 定义为 0
 bool b2 = true; // true 定义为 1
 ```
 
-3. 宽字符型 `wchar_t` 。
-
-4. 复数类型 `_Complex` 以及虚数类型 `_Imaginary`。
+4. 复数类型 `_Complex` 以及虚数类型 `_Imaginary`，在头文件 complex.h 中引入，在此不多介绍。
 
 ### 常量和变量
 
@@ -126,6 +130,7 @@ bool b2 = true; // true 定义为 1
 /* 字符型常量 */
 'a'; // 单引号表示字符，字符 a，(const int)97
 97; // 字符 a 的 ASCII 码，(const int)97
+L'啊'; // 宽字符 wchar_t 型，本质是 unsigned int
 
 /* 浮点数常量 */
 3.1415; // 小数 3.1415，(const double)3.1415
@@ -138,9 +143,28 @@ bool b2 = true; // true 定义为 1
 "hello" // 双引号表示字符串，hello\0，字符串都以 '\0' 结尾，(const char *) 型
 ```
 
-1. C99 标准中新增了复合字面量。
+在 C99 标准中：
 
-2. C99 标准中可以使用十六进制表示浮点数字面量。
+* 可以使用十六进制表示浮点数字面量。
+
+```c
+0x1.2p3; // 十六进制 1.2 乘 2^3，即十进制 9.0
+0x1.2P3; // 同上
+```
+
+* 新增了复合字面量，用来表示复合数据类型的常量。看起来就像强制类型转换，但强制类型转换是右值表达式，复合字面量是左值表达式。
+
+```c
+/* 
+ * (data_type){initializer_list}
+ * (data_type){initializer_list,}
+ */
+(int []){1, 2, 3}; // 可看作匿名数组 {1, 2, 3}
+(int [3]){1, 2, 3}; // 同上
+
+int *p = (int []){1, 2, 3}; // 等价于 int *p = array_identifier； 
+char *str = (chat []){"HelloWorld!"};
+```
 
 ASCII 码表
 
@@ -294,15 +318,11 @@ printf("%f\n", b); // 将会输出 16777216.00000
 
 ## 表达式和语句
 
-### 表达式
+### 左值和右值
 
-一个表达式包含至少一个操作数以及零或多个运算符。C 语言中表达式以两个独立的属性刻画：类型和值类别，值的类别有三种：左值、非左值（右值）和函数指代器。
+一个表达式包含至少一个操作数以及零或多个运算符。C 语言中表达式以两个独立的属性刻画：类型和值类别，值的类别有两种：左值和非左值（右值）。
 
-> Lvalue expression is any expression with object type other than the type `void`, which potentially designates an object (the behavior is undefined if an lvalue does not actually designate an object when it is evaluated). In other words, lvalue expression evaluates to the _object identity_.
-
-简单来说左值（locator value，lvalue）是指一个在内存中有确定位置的对象，关注点在于对象的身份。右值则关注它的值。
-
-左值表达式的结果通常是在程序中声明和定义的对象。非左值表达式的结果则通常是字面值常量或在表达式求值过程中产生的临时对象。
+左值（locator value，lvalue）是指一个在内存中有确定位置的对象，关注点在于对象的身份，右值则关注它的值。左值表达式的结果通常是在程序中声明和定义的对象。非左值表达式的结果则通常是字面值常量或在表达式求值过程中产生的临时对象。
 
 左值也可以作为右值，但右值不能作为左值。
 
@@ -312,20 +332,23 @@ a = b; // b 可以作为右值
 2 = b； // Invalid，2 不能作为左值
 ```
 
-可修改的左值表达式：左值指内存中有确定位置的对象，但并不是所有左值都可以被修改：
+左值表达式的应用场景：
+
+* 作为 `&` 运算符的操作数
+* 作为赋值运算符的左操作数（必须为不可修改的左值）
+* 自增和自减运算符的操作数（必须为不可修改的左值）
+* 作为成员访问运算符的左操作数
+
+左值指内存中有确定位置的对象，但并不是所有左值都可以被修改：
 
 ```c
 const int a = 1;
 a = 2; // Invalid
+int b[] = {1, 2, 3};
+b++; // Invalid
 ```
 
-可修改的左值指任何非数组、非不完整数据类型且非 `const` 限定的左值表达式，且如果它是结构体/共用体，则其成员中也没有任何成员使用 `const` 限定。
-
-只有可修改的左值表达式可以用作自增、自减运算符的参数以及赋值运算符的左参数。
-
-右值表达式：
-
-**函数指代器表达式**
+可修改的左值指任何非数组、非不完整数据类型且非 `const` 限定的左值表达式，且如果它是结构体或共用体，则其成员中也没有任何成员使用 `const` 限定。
 
 ### 运算符
 
@@ -563,14 +586,14 @@ void f(int a[], int 4) {
 
 ```c
 /*
-* goto label
-* label 是跳转目标的标签
-*/
+ * goto label
+ * label 是跳转目标的标签
+ */
     int n = 1;
-label:;
+A:;
     int a[n];
     if (n++ < 10)
-        goto label;
+        goto A;
 ```
 
 ## 预处理
@@ -891,11 +914,12 @@ int *p = &a;
 int *q = (int *)0x555555551234; // 直接指定内存
 ```
 
-指针的算术法则：
+指针的运算法则：
 
 1. 指针加/减数字：`p + i` 表示指针所指向位置后移 `i` 个单位的位置，`p - i` 表示指针所指位置前移 `i` 个单位的位置。
 
 2. 指针减指针，得到两指针之间的元素个数。
+3. 指针的关系运算，`p > q` 代表 `p` 指向的内存地址比 `q` 指向的内存地址大。`p == q` 代表 `p` 和 `q` 指向同一内存地址。
 
 ### 一维数组
 
@@ -971,11 +995,14 @@ int *p = g;
 *(p + 2); // 等价于 g[2]
 ```
 
-C99 中引入了新的复合数据类型的初始化方式，在初始化列表时可以指明位置：
+C99 中引入了新的复合数据类型的初始化方式：指定初始化器（designated initializer），在初始化列表中可以指明位置：
 
 ```c
-int h[5] = {[0]}
+/* = {[index] = value, ...} */
+int h[5] = {[4] = 5, [0] = 1, 2, 3, 4}; // {1, 2, 3, 4, 5}
 ```
+
+这种初始器同样应用于[结构体类型](#结构体)。
 
 ### 变长数组
 
@@ -1125,14 +1152,13 @@ int strlen(char *);
 int strlen(char *, char *);
 ```
 
-6. strcat 字符串连接
+5. strcat 字符串连接
 
 
-
-8. strchr & strrchr 字符查找
-9. strstr 字符串查找
-10. strdup 
-11. strrev 字符串反转
+6. strchr & strrchr 字符查找
+7. strstr 字符串查找
+8. strdup 
+9. strrev 字符串反转
 
 ### 指针和数组
 
@@ -1157,6 +1183,8 @@ char *(*p)[3] = &array; // 数组指针
 
 ### 枚举类型
 
+枚举就是把可能的值一一列举，枚举变量只能取其中的一个值。
+
 枚举类型的定义：
 
 ```c
@@ -1169,7 +1197,7 @@ char *(*p)[3] = &array; // 数组指针
  * };
  */
 enum week {
-    Monday=1,
+    Monday,
     Tuesday,
     Wednesday,
     Thursday,
@@ -1177,6 +1205,28 @@ enum week {
     Saturday,
     Sunday
 };
+```
+
+枚举变量的声明和初始化：
+
+```c
+enum week today = Monday; // 值只能在 week 的成员中取
+printf("%d\n", today); // 输出 0
+```
+
+输出 0 的原因是在缺省状态下默认第一个成员的整数值为 0，并依次递增 1。
+
+如果对枚举的成员赋值，则未赋值的成员的值为前一个成员的值加 1。
+
+```c
+enum test {
+    A=2,
+    B=4,
+    C,
+    D
+};
+
+printf("%d %d\n", C, D); // 5 6
 ```
 
 ### 结构体类型
@@ -1219,8 +1269,19 @@ struct {
 结构体变量的初始化：
 
 ```c
-struct Student A = {1, 'm', '20', "Allen"};
+struct Student A = {1, 'm', 20, "Allen"}; // 必须按照定义中的成员顺序来
 struct Student B = A; // 同类型结构体变量可以直接赋值
+```
+
+C99 标准新增的指定初始化器（designated initializer）：
+
+```c
+struct Student C = {
+    .age = 18,
+    .name = "Bob",
+    .id = 2,
+    .sex = 'f'
+};
 ```
 
 访问结构体变量的成员：
@@ -1233,7 +1294,7 @@ struct Student *p;
 int b = p->age; // 也可以使用结构体指针访问成员
 ```
 
-当结构体当中含有长度未知的数组即柔性数组：
+当结构体当中含有长度未知的数组（柔性数组）：
 
 ```c
 struct s {
@@ -1245,21 +1306,73 @@ struct s s1 = {1, {2, 3}}; // Invalid，因为 b 的长度未知
 struct s *s2 = malloc(sizeof (struct s) + (sizeof (int) * 5)); // 此时柔性数组为 b[5]
 ```
 
-### 共用体类型
+结构体内存对齐：
 
-共用体是特殊的结构体，允许在相同的内存位置存储不同的数据类型，只有一个成员是带有值的。
-
-共用体类型的定义：
+Demo：
 
 ```c
-/*
- * 共用体类型的定义
- * union identifier {
- *     member_list
- * };
- */
-union 
+struct demo {
+    char a;
+    int b;
+    short c;
+}
+
+printf("%ld\n", sizeof (struct demo));
 ```
+
+理论上上述代码似乎应该输出 1+4+2=7，然而实际上编译运行的结果为 12。
+
+使用 `offsetof(type, member)` 可得到一个成员相对于这个类型的起始位置的偏移字节数，依次求出 a、b、c 的偏移量：
+
+```c
+printf("%ld\n", offsetof(struct demo, a)); // 0
+printf("%ld\n", offsetof(struct demo, b)); // 4
+printf("%ld\n", offsetof(struct demo, c)); // 8
+```
+
+也就是说 `char a` 存储在第 0 个字节，`int b` 存储在第 4～7 字节，`short c` 存储在 8～9 字节。这是由于内存对齐导致：
+
+* 结构体第一个成员存放在 0 偏移处
+* 其他成员需要对齐到某个数字的整数倍，取编译器默认对齐数和该成员的字节数的较小值
+* 结构体的总大小为成员最大对齐数的整数倍
+
+为什么存在内存对齐？
+
+详见[组成原理_数据的表示与运算](../组成原理/组成原理_数据的表示与运算.md)
+
+结构体实现位段：
+
+C 语言中没有位段数据类型，需要借助结构体来实现。成员的类型只能是 `int`、`unsigned int` 且需要定义结构体成员所占的**比特位**数目：
+
+```c
+struct demo {
+    unsigned int a : 1;
+    unsigned int b : 2;
+    unsigned int c : 3;
+}
+```
+
+
+### 共用体类型
+
+共用体是特殊的结构体，共用体成员共享同一段内存地址，任何时刻共用体变量中只有一个成员是带有值的。
+
+共用体的定义以及共用体变量的声明与结构体相同，只是把关键字 `struct` 改为 `union`。
+
+但是共用体变量的初始化只允许一个元素被赋值：
+
+```c
+union data {
+    int A;
+    float B;
+    char C[10];
+};
+
+union data a = {.B = 1.2};
+float b = a.B; // 1.2
+```
+
+共用体变量任何时刻只有一个成员是带有值的，即最后一次被赋值的成员带有值。
 
 ### 不完全数据类型
 
@@ -1283,11 +1396,13 @@ struct B {
 }
 ```
 
-### const & volatile
+### const & volatile & restrict
 
 `const` 限定符
 
 `volatile` 限定符
+
+`restrict` 限定符
 
 ### typedef
 
@@ -1345,13 +1460,21 @@ C 语言中返回值类型缺省，则默认为 int 型。
 
 ### 函数调用
 
-main 函数是 C 语言程序的入口函数，它的完整形式为：
+main 函数是 C 语言程序的入口函数，它有两种形式：
 
 ```c
-int main(int argc, int argv[])
+int main(void) {
+    statement
+}
+
+int main(int argc, char *argv[]){
+    statement
+}
 ```
 
-在 C89 标准中，main 函数最后必须加上 `return 0`，但是 C99 标准可不加。
+参数 argc 代表程序所运行的环境传递给程序的参数数量。argv 是一个指针数组
+
+在 C89 标准规定 main 函数最后必须加上 `return 0`，但是 C99 标准可不加。
 
 函数调用栈帧
 
@@ -1399,6 +1522,7 @@ int main() {
 回调函数
 
 ```c
+
 ```
 
 ## 标准 I/O
@@ -1407,15 +1531,15 @@ int main() {
 
 标准 I/O 是  C 标准库中的 I/O 库函数，文件 I/O 指操作系统自身负责输入输出的系统调用。
 
-### fopen & fclose
+* fopen & fclose
 
-### fputc & fgetc
+* fputc & fgetc
 
-### fputs & fgets
+* fputs & fgets
 
-### fprintf & fscanf
+* fprintf & fscanf
 
-### fread & fwrite
+* fread & fwrite
 
 ## 内存管理
 
@@ -1436,9 +1560,13 @@ int main() {
 
 ### 动态内存管理
 
-1. malloc
-2. free
-3. calloc
-4. realloc
+* malloc
+* free
+* calloc
+* realloc
 
 ### 缓冲区溢出
+
+
+## C 标准库及常用库函数
+

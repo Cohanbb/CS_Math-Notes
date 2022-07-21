@@ -18,17 +18,18 @@ C++ 新增了 `new` 和 `delete` 关键词用于动态管理内存，对应的�
 
 ### 新增基本数据类型
 
-1. bool 型
+1. long long int 型（C99 标准也加入）
+
+2. bool 型
 
 bool 型即布尔数据类型，用来表示 `true` 或 `false`，占一个字节。
 
-bool 型转 int 型，`true` 转化为 1，`false` 转化为 0。
-
-int 型转 bool 型，0 转化为 `false`，任何非零整数转化为 `true`。 
-
-2. long long int 型（C99 标准也加入）
+* bool 型转 int 型，`true` 转化为 1，`false` 转化为 0。
+* int 型转 bool 型，0 转化为 `false`，任何非零整数转化为 `true`。 
 
 3. wchat_t 型（C99 标准也加入）
+
+在 C++ 中宽字符型是一种基本数据类型，而 C 语言中是通过 `typedef unsigned int wchar_t` 实现。
 
 ### 变量初始化方式
 
