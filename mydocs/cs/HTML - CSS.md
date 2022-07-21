@@ -511,5 +511,5 @@ a:link or visited or hover or active {
 
 # 参考文献
 
-[1] 菜鸟教程. HTML 教程[EB/OL]. https://www.runoob.com/html/html-tutorial.html.   
-[2] 菜鸟教程. CSS 教程[EB/OL]. https://www.runoob.com/css/css-tutorial.html.
+[1] 菜鸟教程.HTML 教程[EB/OL].[https://www.runoob.com/html/html-tutorial.html](https://www.runoob.com/html/html-tutorial.html).   
+[2] 菜鸟教程.CSS 教程[EB/OL].[https://www.runoob.com/css/css-tutorial.html](https://www.runoob.com/css/css-tutorial.html).

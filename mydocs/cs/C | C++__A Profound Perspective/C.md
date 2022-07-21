@@ -1,5 +1,51 @@
 # C
 
+目录
+
+- [C](#c)
+  - [摘要](#摘要)
+  - [基本数据类型和常变量](#基本数据类型和常变量)
+    - [基本数据类型](#基本数据类型)
+    - [C99 新增数据类型](#c99-新增数据类型)
+    - [常量和变量](#常量和变量)
+    - [类型转换](#类型转换)
+  - [表达式和语句](#表达式和语句)
+    - [左值和右值](#左值和右值)
+    - [运算符](#运算符)
+    - [优先级和结合性](#优先级和结合性)
+    - [语句结构](#语句结构)
+  - [复合数据类型](#复合数据类型)
+    - [指针](#指针)
+    - [一维数组](#一维数组)
+    - [变长数组](#变长数组)
+    - [多维数组](#多维数组)
+    - [C-风格字符串](#c-风格字符串)
+    - [指针数组和数组指针](#指针数组和数组指针)
+    - [枚举类型](#枚举类型)
+    - [结构体类型](#结构体类型)
+    - [共用体类型如下](#共用体类型如下)
+    - [不完全数据类型](#不完全数据类型)
+    - [const & volatile & restrict](#const--volatile--restrict)
+    - [typedef](#typedef)
+  - [预处理](#预处理)
+    - [宏定义](#宏定义)
+    - [条件编译](#条件编译)
+    - [文件包含](#文件包含)
+  - [函数](#函数)
+    - [函数参数](#函数参数)
+    - [函数返回值](#函数返回值)
+    - [函数调用](#函数调用)
+    - [函数指针](#函数指针)
+  - [标准 I/O](#标准-io)
+    - [标准 I/O 和文件 I/O](#标准-io-和文件-io)
+    - [标准 I/O 库函数](#标准-io-库函数)
+  - [内存管理](#内存管理)
+    - [内存组织方式](#内存组织方式)
+    - [动态内存管理](#动态内存管理)
+    - [缓冲区溢出](#缓冲区溢出)
+  - [C 标准库及常用库函数](#c-标准库及常用库函数)
+  - [参考文献](#参考文献)
+
 ## 摘要
 
 C 语言是一个系统级的高级程序设计语言，是需要编译执行的静态语言，广泛应用于操作系统、驱动程序、嵌入式软件、系统级应用和游戏的开发，C 语言是最接近底层的高级语言。
@@ -428,7 +474,7 @@ int k2 = j++; // k2 为 1，j 为 2
 
 9. MISC
 
-`sizeof` 运算符返回一个表达式或者类型所占的字节数，返回的类型是 long unsigned int 类型。
+`sizeof` 运算符返回一个表达式或者类型所占的字节数，返回的类型是 `size_t` 型，在 64 位编译器中为 `unsigned long int` 型。
 
 ```c
 /*
@@ -438,7 +484,7 @@ int k2 = j++; // k2 为 1，j 为 2
 int a;
 printf("%ld\n", sizeof (int)); // 输出 4
 printf("%ld\n", sizeof a); // 输出 4
-printf("%ld\n", sizeof (sizeof a)); // 输出 8，因为是 long unsigned int 型
+printf("%ld\n", sizeof (sizeof a)); // 输出 8，因为是 unsigned long int 型
 ```
 
 逗号运算符，连接两个表达式，先计算左边的表达式再计算右边的表达式，但最终整个表达式的结果为右侧表达式的值。
@@ -868,33 +914,71 @@ char str2[] = "123";
 
 str1 是一个指向字符串常量“123”的指针，即常量指针，常量存储在内存中的常量区，是只读的存储区，故无法改变 str1 字符串的值。而 str2 是一个字符数组，其内容存储在内存中的栈区，是可以进行修改的。
 
-C 语言中用于字符串操作的函数：
+string.h 头文件定义的库函数：
 
-1. strcpy 字符串复制
-
-```c
-char * strcpy(char *, char *);
-```
-
-2. strlen 返回i字符串长度
+1. strcpy & strncpy 字符串复制
 
 ```c
-int strlen(char *);
+char * strcpy(char *dest, const char *src); // 拷贝 src 到 dest
+char * strncpy(char *dest, const char *src, size_t count); // 拷贝 src 的至多 count 个字符到 dest
 ```
+
+这两个函数在进行拷贝时不遇到 `'\0'` 或达到最大拷贝数量便不会停止拷贝，故可能会发生数组越界导致缓冲区溢出。
+
+2. strcat & strncat 字符串连接
+
+```c
+char *strcat(char *dest, const char *src); // 将 src 连接到 dest 的后面
+char *strncat(char *dest, const char *src, size_t count); // 将 src 至多 count 个字符连接到 dest 后面
+```
+
+同样有缓冲区溢出的隐患。
 
 4. strcmp 字符串比较
 
 ```c
-int strlen(char *, char *);
+int strlen(char const *s1, char const *s2);
 ```
 
-5. strcat 字符串连接
+逐个比较两个字符串的字符，直到发现不相同的字符。
 
+ * 如果这个字符的 ASCII 码 s1 > s2 将返回大于 0 的数，反之小于 0。
+ * 如果 s1 等于 s2，返回等于 0 的数。
 
-6. strchr & strrchr 字符查找
-7. strstr 字符串查找
-8. strdup 
-9. strrev 字符串反转
+5. strlen 返回字符串长度
+
+```c
+int strlen(char const *s); // 返回字符串 s 的长度（不包含末尾的 '\0'）
+```
+
+如果字符数组不以 `'\0'` 结尾，同样有缓冲区溢出的隐患。
+
+6. strstr 字符串查找
+
+```c
+char *strstr(char const *s1, char const *s2); // 在 s1 中查找 s2，如果找到了返回指向该位置的指针，否则返回 NULL
+```
+
+7. strrev 字符串反转
+
+```c
+char *strrev(char *s); // 反转字符串 s
+```
+
+8.  toupper & tolower 字符大小写转换
+
+9. memcpy & memmove
+
+```c
+void *memcpy(void *dest, const void *src, size_t count);
+void *memmove(void *dest, const void *src, size_t count);
+```
+
+10. memcmp
+
+```c
+int memcmp(const void *a1,const void *a2, size_t count);
+```
 
 ### 指针数组和数组指针
 
@@ -1072,23 +1156,24 @@ printf("%ld\n", offsetof(struct demo, c)); // 8
 * 其他成员需要对齐到某个数字的整数倍，取编译器默认对齐数和该成员的字节数的较小值
 * 结构体的总大小为成员最大对齐数的整数倍
 
-为什么存在内存对齐？
-
-详见[组成原理_数据的表示与运算](../组成原理/组成原理_数据的表示与运算.md)
+>为什么要内存对齐？
+>
+>1. 并非所有硬件都可以访问到内存中所有地址上的数据
+>2. 可以使内存的访问速度加快，详见[组成原理_数据的表示与运算](../组成原理/组成原理_数据的表示与运算.md)。
 
 结构体实现位段：
 
-C 语言中没有位段数据类型，需要借助结构体来实现。成员的类型只能是 `int`、`unsigned int` 且需要定义结构体成员所占的**比特位**数目：
+C 语言中没有位段数据类型，需要借助结构体来实现。成员的类型只能是 `int`、`unsigned int` 型且需要定义结构体成员所占的**比特位**数目，如下：
 
 ```c
 struct demo {
     unsigned int a : 1;
     unsigned int b : 2;
     unsigned int c : 3;
-}
+};
 ```
 
-### 共用体类型
+### 共用体类型如下
 
 共用体是特殊的结构体，共用体成员共享同一段内存地址，任何时刻共用体变量中只有一个成员是带有值的。
 
@@ -1425,7 +1510,7 @@ A --> |#include| D[test3.c] --> |#include| C
 
 ## 函数
 
-函数是 C 语言中重要的概念，C 程序执行时会在不同的函数之间跳转。
+函数是 C 语言中重要的概念，程序执行时会在不同的函数之间跳转和返回i。
 
 C 语言是需要编译的语言，程序中函数在被调用之前必须声明。
 
@@ -1450,16 +1535,25 @@ int Add(int a) {
 
 ### 函数参数
 
-函数的参数列表中的参数叫做形式参数
+函数参数列表中的参数叫做形式参数，函数调用时的参数叫做实际参数，传递参数方式有两种：
 
-1. 值传递参数
-2. 地址传递参数
+1. 值传递
 
-可变参数函数
+使用变量作为函数的形式参数。
+
+2. 地址传递
+
+使用指针作为函数的形式参数
+
+C99 新增可变参数的函数。
+
+```c
+
+```
 
 ### 函数返回值
 
-C 语言中返回值类型缺省，则默认为 int 型。
+C 语言中返回值类型若缺省，则默认为 int 型。
 
 ### 函数调用
 
@@ -1574,6 +1668,35 @@ int main() {
 
 ### 缓冲区溢出
 
+1. 栈溢出
+
+```c
+#include <string.h>
+int main() {
+    char src[] = "12345";
+    char des[] = "123";
+    strcpy(des, src);
+}
+```
+
+运行程序，没有报错，使用 GDB 调试，查看局部变量：
+
+```bash
+(gdb) info locals
+src = "5\000\063\064\065"
+des = "1234"
+```
+
+发生了栈溢出。
+
+2. 堆溢出
+
 
 ## C 标准库及常用库函数
 
+
+
+## 参考文献
+
+[1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)  
+[2] Trevis Rothwell, James Youngman.GNU C Reference Manual[EB/OL].[https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.pdf](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.pdf)  

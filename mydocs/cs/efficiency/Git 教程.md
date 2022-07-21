@@ -421,7 +421,7 @@ $ git config --global init.defaultBranch main
 
 # 参考文献
 
-[1] 菜鸟教程. Git 教程[EB/OL]. https://www.runoob.com/git/git-tutorial.html  
-[2] 菜鸟教程. Github 简明教程[EB/OL]. https://www.runoob.com/w3cnote/git-guide.html  
-[3] VGtime. Git基本原理介绍[EB/OL]. https://blog.csdn.net/JKR10000/article/details/110453547  
-[4] raoxiaoya. git深入理解(一)：暂存区(Stage)，索引(index)[EB/OL]. https://blog.csdn.net/raoxiaoya/article/details/110824019
+[1] 菜鸟教程.Git 教程[EB/OL].[https://www.runoob.com/git/git-tutorial.html](https://www.runoob.com/git/git-tutorial.html)  
+[2] 菜鸟教程.Github 简明教程[EB/OL].[https://www.runoob.com/w3cnote/git-guide.html](https://www.runoob.com/w3cnote/git-guide.html)   
+[3] VGtime.Git基本原理介绍[EB/OL].[https://blog.csdn.net/JKR10000/article/details/110453547](https://blog.csdn.net/JKR10000/article/details/110453547)  
+[4] raoxiaoya.git深入理解(一)：暂存区(Stage)，索引(index)[EB/OL].[https://blog.csdn.net/raoxiaoya/article/details/110824019](https://blog.csdn.net/raoxiaoya/article/details/110824019)

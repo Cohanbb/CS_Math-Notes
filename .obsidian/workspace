@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "ee79d218d15f2f05",
+        "id": "08be36c6e63c539b",
         "type": "leaf",
         "state": {
           "type": "markdown",
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.5
+    "width": 304.5,
+    "collapsed": true
   },
   "right": {
     "id": "3bfa751b8c4fea9a",
@@ -103,17 +104,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ee79d218d15f2f05",
+  "active": "08be36c6e63c539b",
   "lastOpenFiles": [
     "mydocs/cs/C | C++__A Profound Perspective/C++.md",
+    "mydocs/cs/efficiency/Git 教程.md",
+    "mydocs/cs/HTML - CSS.md",
+    "mydocs/cs/C | C++__A Profound Perspective/C.md",
+    "mydocs/cs/PHP__A Basic Start.md",
     "mydocs/cs/C | C++__A Profound Perspective/image/Pasted image 20220721190642.png",
     "mydocs/cs/C | C++__A Profound Perspective/image/Pasted image 20220718201452.png",
     "mydocs/cs/C | C++__A Profound Perspective/image/Pasted image 20220526153112.png",
     "mydocs/cs/C | C++__A Profound Perspective/image/Pasted image 20220718021209.png",
-    "mydocs/cs/C | C++__A Profound Perspective/C.md",
-    "mydocs/cs/数据结构/数据结构_绪论.md",
-    "mydocs/cs/从0开始入门数学建模.md",
-    "mydocs/cs/智能优化算法.md",
-    "mydocs/cs/HTML - CSS.md"
+    "mydocs/cs/数据结构/数据结构_绪论.md"
   ]
 }
