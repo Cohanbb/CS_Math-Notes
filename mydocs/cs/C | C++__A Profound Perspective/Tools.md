@@ -20,7 +20,7 @@ GDB(GNU Symbolic Debugger) 是完全开源、自由的程序调试工具。
 
 Make 工具根据编写的 Makefile 处理项目的构建和编译。
 
-**makefile 的编写方法**
+**Makefile 的编写方法**
 
 ## CMake
 
