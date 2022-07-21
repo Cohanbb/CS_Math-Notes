@@ -1698,5 +1698,4 @@ des = "1234"
 
 ## 参考文献
 
-[1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)  
-[2] Trevis Rothwell, James Youngman.GNU C Reference Manual[EB/OL].[https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.pdf](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.pdf)  
+[1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)
