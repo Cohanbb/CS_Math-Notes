@@ -377,7 +377,7 @@ printf("%f\n", b); // 将会输出 16777216.00000
 ```c
 int a, b; // a、b 是左值
 a = b; // b 可以作为右值
-2 = b； // Invalid，2 不能作为左值
+2 = b；// Invalid，2 不能作为左值
 ```
 
 左值表达式的应用场景：
@@ -724,6 +724,20 @@ int a3[5] = {1, 2, 3, 4}; // {1, 2, 3, 4, 0} 未初始化的元素被设为 0
 int a4[] = {1, 2, 3, 4}; // {1, 2, 3 ,4}
 ```
 
+C99 中引入了新的复合数据类型的初始化方式：指定初始化器（designated initializer），在初始化列表中可以指明位置：
+
+```c
+/* = {[index] = value, ...} */
+int a5[5] = {[4] = 5, [0] = 1, 2, 3, 4}; // {1, 2, 3, 4, 5}
+int a6[5] = {[4] 5, [0] 1, 2, 3, 4}; // 同上
+```
+
+GCC 对此进行了拓展，可以使用这种方式进行初始化：
+
+```c
+int a[10] = {[0 ... 8] = 1, 2} // 0~8 位为 1，9 位为 2
+```
+位
 如果在声明数组时没有进行初始化，则后续无法再对数组进行初始化，如：
 
 ```c
@@ -746,7 +760,7 @@ int e[3] = {1, 2, 3};
 printf("%d %d %d\n", e[0], e[1], e[2]); // 1 2 3
 ```
 
-数组名代表数组首元素的地址即 `&array[0]`，这与对数组名取地址 `&array` 在数值上相同，但代表的含义不同。数组名仅代表数组首元素的地址，而对数组名取地址代表整个数组的地址。
+数组名代表数组首元素的地址即 `array == &array[0]`，这与对数组名取地址 `&array` 在数值上相同，但代表的含义不同。`array` 仅代表数组首元素的地址，而 `&array` 代表整个数组的地址。且 `sizeof array` 得到的是整个数组的字节数。
 
 > 数组在内存中一旦创建便无法改变其大小和位置，故数组的首元素地址无法被改变，而数组名代表数组首元素的地址，所以数组名不是可修改的左值。
 
@@ -775,13 +789,6 @@ int *p = g;
 *p; // 等价于 g[0] 
 *(p + 1); // 等价于 g[1]
 *(p + 2); // 等价于 g[2]
-```
-
-C99 中引入了新的复合数据类型的初始化方式：指定初始化器（designated initializer），在初始化列表中可以指明位置：
-
-```c
-/* = {[index] = value, ...} */
-int h[5] = {[4] = 5, [0] = 1, 2, 3, 4}; // {1, 2, 3, 4, 5}
 ```
 
 这种初始器同样应用于[结构体类型](#结构体)。
@@ -1104,6 +1111,17 @@ struct Student C = {
 };
 ```
 
+GCC 对此进行了拓展，还可以使用这种方式进行初始化：
+
+```c
+struct Student D = {
+    age : 20,
+    name : "David",
+    id : 3,
+    sex : 'm'
+};
+```
+
 访问结构体变量的成员：
 
 ```c
@@ -1161,19 +1179,23 @@ printf("%ld\n", offsetof(struct demo, c)); // 8
 >1. 并非所有硬件都可以访问到内存中所有地址上的数据
 >2. 可以使内存的访问速度加快，详见[组成原理_数据的表示与运算](../组成原理/组成原理_数据的表示与运算.md)。
 
-结构体实现位段：
+位段：
 
-C 语言中没有位段数据类型，需要借助结构体来实现。成员的类型只能是 `int`、`unsigned int` 型且需要定义结构体成员所占的**比特位**数目，如下：
+C 语言中没有位段数据类型，需要借助结构体来实现。位段的类型只能是 `int`、`unsigned int` 型，使用整数定义所占的**比特**数。
+
+Demo：
 
 ```c
 struct demo {
-    unsigned int a : 1;
-    unsigned int b : 2;
-    unsigned int c : 3;
+    unsigned int a : 1; // 1 bit
+    unsigned int b : 2; // 2 bits
+    unsigned int c : 3; // 3 bits
 };
 ```
 
-### 共用体类型如下
+这段代码定义了 3 个位段 a、b、c，分别为 1 比特、2 比特和 3 比特。
+
+### 共用体类型
 
 共用体是特殊的结构体，共用体成员共享同一段内存地址，任何时刻共用体变量中只有一个成员是带有值的。
 
@@ -1188,11 +1210,16 @@ union data {
     char C[10];
 };
 
-union data a = {.B = 1.2};
-float b = a.B; // 1.2
+union date a = {1}; // 不指定成员则赋值给第一个成员
+union data c = {B: 1.2}; // 赋值给指定成员
+union data b = {.B = 1.2}; // 同上
+union data d;
+d.B = 1.2;
 ```
 
 共用体变量任何时刻只有一个成员是带有值的，即最后一次被赋值的成员带有值。
+
+共用体所占内存大小满足其存储位数最大的成员即可，因为所有成员共享一段内存。
 
 ### 不完全数据类型
 
@@ -1218,7 +1245,9 @@ struct B {
 
 ### const & volatile & restrict
 
-`const` 限定符
+`const` 限定符限定一个变量是只读的。
+
+`mutable`
 
 `volatile` 限定符
 
@@ -1512,11 +1541,11 @@ A --> |#include| D[test3.c] --> |#include| C
 
 函数是 C 语言中重要的概念，程序执行时会在不同的函数之间跳转和返回i。
 
-C 语言是需要编译的语言，程序中函数在被调用之前必须声明。
+C 语言是需要编译的语言，程序中函数在被调用之前必须声明函数原型。
 
 ```c
 /*
- * 函数的声明
+ * 函数原型的声明：
  * (extern) return_type function_identifier(parameter_list);
  * 函数在声明时候参数列表可以只写数据类型，extern 表示引用其他文件的函数
  */
@@ -1543,7 +1572,43 @@ int Add(int a) {
 
 2. 地址传递
 
-使用指针作为函数的形式参数
+使用指针作为函数的形式参数。
+
+Demo：
+
+```c
+#include <stdio.h>
+
+void test0(char c) {
+    c = 'c';
+}
+
+void test1(char *q) {
+    q = q + 1;
+}
+
+void test2(char **r) {
+    *r = *r + 1;
+}
+
+int main() {
+    char a[] = {'a', 'b'};
+    char *p = a; 
+    test0(*p);
+    printf("%c\n", *p);
+    test1(p);
+    printf("%c\n", *p);
+    test2(&p);
+    printf("%c\n", *p);
+    return 0;
+}
+```
+
+数组作为函数的参数：
+
+```c
+
+```
 
 C99 新增可变参数的函数。
 
@@ -1555,9 +1620,33 @@ C99 新增可变参数的函数。
 
 C 语言中返回值类型若缺省，则默认为 int 型。
 
+函数的返回值也有两种：
+
+1. 返回一个值：使用变量作为返回值。
+
+2. 返回一个地址：以指针作为返回值。
+
+当指针作为函数的返回值时需要注意：
+
+Demo：
+
+```c
+int *f() {
+    int a[] = {1, 2, 3};
+    return a;
+}
+
+int main() {
+    int *p = f();
+    return 0;
+}
+```
+
+上述代码看起来似乎没有问题，但是编译该程序会有警告 warning: function returns address of local variable。这是因为数组 `a` 是函数 `f()` 内的局部变量，定义在函数 `f()` 的栈帧中，`f()` 调用结束后栈帧被销毁，所以数组 `a` 也被销毁，所以指针 `p` 所指向的内容是不存在的，或者说是内存中的脏数据。这种情况如何编写才正确？可以使用 `malloc()` 函数在堆上建立数组，这样就不会随着栈帧一起被销毁。详见[动态创建数组](#动态内存管理)。
+
 ### 函数调用
 
-main 函数是 C 语言程序的入口函数，它有两种形式：
+`main()` 函数是 C 语言程序的入口函数，它有两种形式：
 
 ```c
 int main(void) {
@@ -1634,13 +1723,37 @@ int main() {
 
 * fopen & fclose
 
+```c
+
+```
+
 * fputc & fgetc
+
+```c
+
+
+```
 
 * fputs & fgets
 
+```c
+
+
+```
+
 * fprintf & fscanf
 
+```c
+
+
+```
+
 * fread & fwrite
+
+```c
+
+
+```
 
 ## 内存管理
 
@@ -1662,9 +1775,32 @@ int main() {
 ### 动态内存管理
 
 * malloc
+
+```c
+
+
+```
+
 * free
+
+```c
+
+
+```
+
 * calloc
+
+```c
+
+
+```
+
 * realloc
+
+```c
+
+
+```
 
 ### 缓冲区溢出
 
@@ -1700,5 +1836,6 @@ des = "1234"
 
 [1] cppreference.C reference[EB/OL].[https://en.cppreference.com/w/](https://en.cppreference.com/w/)  
 [2] Computer System: A Programmer Perspective  
-[3] The GNU C Reference Manual  
-[4] C++ Primer Plus  
+[3] Trevis Rothwell, James Youngman.The GNU C Reference Manual[EB/OL].[https://www.gnu.org/software/gnu-c-manual/](https://www.gnu.org/software/gnu-c-manual/)  
+[4] Richard M. Stallman, Roland McGrath, Andrew Oram, and Ulrich Drepper.The GNU C Library Reference Manual[EB/OL].[https://www.gnu.org/software/libc/manual/](https://www.gnu.org/software/libc/manual/)  
+[5] C++ Primer Plus  
